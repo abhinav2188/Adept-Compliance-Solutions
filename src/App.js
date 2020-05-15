@@ -2,8 +2,8 @@ import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-        Adept Compliance Solutions
+    <div className="font-heading font-bold antialiased text-blue-logo bg-gray-dark min-h-screen">
+        <h2>Adept Compliance Solutions</h2>
     </div>
   );
 }
