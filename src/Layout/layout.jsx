@@ -10,7 +10,7 @@ const Layout = (props) => {
             <div className="flex-grow ">
                 {props.children}
             </div>
-            <BottomNav />
+            {/* <BottomNav /> */}
             <Footer />
         </div>
     );
