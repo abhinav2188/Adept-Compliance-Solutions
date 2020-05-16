@@ -12,7 +12,7 @@ const Display = (props) => {
 
 
     return (
-        <div className="w-full flex flex-col items-center py-8 relative" >
+        <div className="w-full flex flex-col items-center py-8 relative xl:mb-16 lg:mb-12 md:mb-10 mb-6" >
 
             {/* background container, company key values blocks*/}
             <div className="absolute top-0 bg-gray-mid w-full overflow-hidden text-gray-dark display-back">
@@ -23,7 +23,7 @@ const Display = (props) => {
                     <h4>Cost Effective</h4>
                     <img className="-z-10 top-1/5 left-1/5 absolute" src={csvg} alt="" />
                 </div>
-                <div className="absolute xl:h-64 xl:w-64 md:h-40 md:w-40 w-32 h-32 bottom-0 transform xl:translate-y-8 xl:translate-x-32 lg:translate-y-12 md:translate-x-4 lg:translate-x-8 md:translate-y-6 translate-x-4 -translate-y-48 shadow-lg rounded-lg overflow-hidden xl:px-6 xl:py-4 md:pl-4 md:pr-10 md:py-4 p-2 " style={{backgroundColor:"#897979"}}>
+                <div className="absolute xl:h-64 xl:w-64 lg:w-48 lg:h-48 md:h-40 md:w-40 w-32 h-32 bottom-0 transform xl:translate-y-12 xl:translate-x-32 lg:translate-y-12 md:translate-x-4 lg:translate-x-8 md:translate-y-6 translate-x-4 -translate-y-48 shadow-lg rounded-lg overflow-hidden xl:px-6 xl:py-4 md:pl-4 md:pr-10 md:py-4 p-2 " style={{backgroundColor:"#897979"}}>
                     <img  className="top-1/5 left-1/5 absolute -z-10" src={tsvg} alt=""/>
                     <h4>Transparency and Pre-reminders</h4>
                 </div>
@@ -38,13 +38,13 @@ const Display = (props) => {
             </div>
 
             {/* logo container */}
-            <div className="flex flex-col items-center z-0">
+            <div className="flex flex-col items-center z-0 lg:pt-0 md:pt-8">
                 <img className="lg:w-24 md:w-20 w-16" src={Logo} alt=""></img>
                 <p className="text-blue-logo font-heading font-bold">Adept Compliance Solutions</p>
             </div>
 
             {/* tagline container */}
-            <div className="bg-blue-tag rounded-lg xl:mt-24 lg:mt-24 md:mt-48 mt-48 relative overflow-hidden shadow-lg z-0 xl:w-1/2 md:w-3/5 w-5/6">
+            <div className="bg-blue-tag rounded-lg xl:mt-16 lg:mt-24 md:mt-24 mt-48 relative overflow-hidden shadow-lg z-0 xl:w-1/2 md:w-3/5 w-5/6">
                 <div className="-z-10 w-full bottom-0 absolute">
                     <img className="w-full opacity-50" src={CurveSvg} alt=""/>
                 </div>
