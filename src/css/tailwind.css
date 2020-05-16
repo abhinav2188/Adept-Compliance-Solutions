@@ -641,7 +641,7 @@ h6{
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   h1{
     font-size: 2.25rem;
   }
@@ -18728,6 +18728,18 @@ h6{
   transition-delay: 1000ms;
 }
 
+.h-36{
+  height:9rem;
+}
+
+.w-36{
+  width:9rem;
+}
+
+.mt-28{
+  margin-top:7rem;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
@@ -36760,6 +36772,18 @@ h6{
 
   .sm\:delay-1000 {
     transition-delay: 1000ms;
+  }
+
+  .sm\:h-36{
+    height:9rem;
+  }
+
+  .sm\:w-36{
+    width:9rem;
+  }
+
+  .sm\:mt-28{
+    margin-top:7rem;
   }
 }
 
@@ -54796,6 +54820,18 @@ h6{
   .md\:delay-1000 {
     transition-delay: 1000ms;
   }
+
+  .md\:h-36{
+    height:9rem;
+  }
+
+  .md\:w-36{
+    width:9rem;
+  }
+
+  .md\:mt-28{
+    margin-top:7rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -72830,6 +72866,18 @@ h6{
 
   .lg\:delay-1000 {
     transition-delay: 1000ms;
+  }
+
+  .lg\:h-36{
+    height:9rem;
+  }
+
+  .lg\:w-36{
+    width:9rem;
+  }
+
+  .lg\:mt-28{
+    margin-top:7rem;
   }
 }
 
@@ -90866,4 +90914,16 @@ h6{
   .xl\:delay-1000 {
     transition-delay: 1000ms;
   }
-}
+
+  .xl\:h-36{
+    height:9rem;
+  }
+
+  .xl\:w-36{
+    width:9rem;
+  }
+
+  .xl\:mt-28{
+    margin-top:7rem;
+  }
+} 

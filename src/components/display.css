@@ -1,17 +1,22 @@
-@media(min-height:769px){
-    .tagline-container{
-        height:28rem;
+@media(min-width:1025px){
+    .display-back{
+        height:36rem;
     }    
 }
-
-@media(max-height:768px){
-    .tagline-container{
-        height:24rem;
+@media(max-width:1024px){
+    .display-back{
+        height:32rem;
+    }
+}
+ 
+@media(max-width:768px){
+    .display-back{
+        height:36rem;
     }
 }
 
-@media(max-height:425px){
-    .tagline-container{
-        height:20rem;
+@media(max-width:425px){
+    .display-back{
+        height:32rem;
     }
 }

@@ -39,7 +39,7 @@ h6{
     }
     
 }
-@screen lg {
+@screen xl {
     h1{
         @apply text-4xl;
     }
@@ -63,3 +63,15 @@ h6{
 @tailwind components;
 
 @tailwind utilities;
+
+@responsive{
+    .h-36{
+        height:9rem;
+    }
+    .w-36{
+        width:9rem;
+    }
+    .mt-28{
+        margin-top:7rem;
+    }
+} 
