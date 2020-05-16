@@ -13,6 +13,8 @@ const Display = (props) => {
 
     return (
         <div className="w-full flex flex-col items-center py-8 relative" >
+
+            {/* background container, company key values blocks*/}
             <div className="absolute top-0 bg-gray-mid w-full overflow-hidden text-gray-dark display-back">
                 <center className="mt-4 -z-20">
                     <img src={WorldSvg} alt="" className=""/>
@@ -34,22 +36,25 @@ const Display = (props) => {
                     <img  className="top-1/5 left-1/5 absolute -z-10" src={fsvg} alt="" />
                 </div>
             </div>
+
+            {/* logo container */}
             <div className="flex flex-col items-center z-0">
                 <img className="lg:w-24 md:w-20 w-16" src={Logo} alt=""></img>
                 <p className="text-blue-logo font-heading font-bold">Adept Compliance Solutions</p>
             </div>
-                {/* tagline container */}
-                <div className="bg-blue-tag rounded-lg xl:mt-24 lg:mt-24 md:mt-48 mt-48 relative overflow-hidden shadow-lg z-0 xl:w-1/2 md:w-3/5 w-5/6">
-                    <div className="-z-10 w-full bottom-0 absolute">
-                        <img className="w-full opacity-50" src={CurveSvg} alt=""/>
-                    </div>
-                    <div className="xl:px-32 md:px-16 px-12 xl:py-16 md:py-8 py-6 flex flex-col h-full">
-                        <h1 className="font-heading font-black">CERTIFY</h1>
-                        <h3 className="font-heading font-black transform md:-translate-y-4 -translate-y-3">YOUR PRODUCTS</h3>
-                        <p className="">Pellentesque ac nunc fringilla, iaculis justo ac, tristique odio. Pellentingilla, iaculis justo ac, tristique odio. Pellentingilla, iaculis justo ac, tristique odio. Pellentesque id fermentum nibh, at tristique enim. Mauris id eros suscipit, </p>
-                        <button onClick={()=>alert('click')} className="mt-20 px-6 py-2 bg-white text-orange-mid self-center flex-end rounded uppercase font-bold">Certify</button>
-                    </div>
+
+            {/* tagline container */}
+            <div className="bg-blue-tag rounded-lg xl:mt-24 lg:mt-24 md:mt-48 mt-48 relative overflow-hidden shadow-lg z-0 xl:w-1/2 md:w-3/5 w-5/6">
+                <div className="-z-10 w-full bottom-0 absolute">
+                    <img className="w-full opacity-50" src={CurveSvg} alt=""/>
                 </div>
+                <div className="xl:px-32 md:px-16 px-12 xl:py-16 md:py-8 py-6 flex flex-col h-full">
+                    <h1 className="font-heading font-black">CERTIFY</h1>
+                    <h3 className="font-heading font-black transform md:-translate-y-4 -translate-y-3">YOUR PRODUCTS</h3>
+                    <p className="">Pellentesque ac nunc fringilla, iaculis justo ac, tristique odio. Pellentingilla, iaculis justo ac, tristique odio. Pellentingilla, iaculis justo ac, tristique odio. Pellentesque id fermentum nibh, at tristique enim. Mauris id eros suscipit, </p>
+                    <button onClick={()=>alert('click')} className="mt-20 px-6 py-2 bg-white text-orange-mid self-center flex-end rounded uppercase font-bold">Certify</button>
+                </div>
+            </div>
 
         </div>
         
