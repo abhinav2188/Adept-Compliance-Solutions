@@ -608,7 +608,11 @@ h4{
 }
 
 p{
-  font-size: 0.75rem;
+  font-size: .75rem;
+}
+
+h6{
+  font-size: .625rem;
 }
 
 @media (min-width: 768px){
@@ -629,11 +633,11 @@ p{
   }
 
   p{
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   h6{
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 }
 
@@ -655,7 +659,7 @@ p{
   }
 
   h6{
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   p{
@@ -6577,12 +6581,16 @@ p{
   height: 100vh;
 }
 
+.text-2xs {
+  font-size: .625rem;
+}
+
 .text-xs {
-  font-size: 0.75rem;
+  font-size: .75rem;
 }
 
 .text-sm {
-  font-size: 0.875rem;
+  font-size: .875rem;
 }
 
 .text-base {
@@ -24607,12 +24615,16 @@ p{
     height: 100vh;
   }
 
+  .sm\:text-2xs {
+    font-size: .625rem;
+  }
+
   .sm\:text-xs {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 
   .sm\:text-sm {
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   .sm\:text-base {
@@ -42638,12 +42650,16 @@ p{
     height: 100vh;
   }
 
+  .md\:text-2xs {
+    font-size: .625rem;
+  }
+
   .md\:text-xs {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 
   .md\:text-sm {
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   .md\:text-base {
@@ -60669,12 +60685,16 @@ p{
     height: 100vh;
   }
 
+  .lg\:text-2xs {
+    font-size: .625rem;
+  }
+
   .lg\:text-xs {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 
   .lg\:text-sm {
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   .lg\:text-base {
@@ -78700,12 +78720,16 @@ p{
     height: 100vh;
   }
 
+  .xl\:text-2xs {
+    font-size: .625rem;
+  }
+
   .xl\:text-xs {
-    font-size: 0.75rem;
+    font-size: .75rem;
   }
 
   .xl\:text-sm {
-    font-size: 0.875rem;
+    font-size: .875rem;
   }
 
   .xl\:text-base {

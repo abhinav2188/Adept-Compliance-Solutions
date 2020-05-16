@@ -15,7 +15,9 @@ h4{
 p{
     @apply text-xs;
 }
-
+h6{
+    @apply text-2xs;
+}
 @screen md{
     h1{
         @apply text-3xl;

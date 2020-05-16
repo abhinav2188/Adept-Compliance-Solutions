@@ -26,7 +26,7 @@ const Display = (props) => {
 
     return (
         <div className="w-full flex flex-col items-center py-8 relative" ref={elementRef}>
-            <div className="z-0 absolute top-0 bg-gray-mid w-full overflow-hidden" style={{height:"36rem"}} dataDepth="0.5">
+            <div className="z-0 absolute top-0 bg-gray-mid w-full overflow-hidden text-gray-dark" style={{height:"36rem"}} dataDepth="0.5">
                 <center className="mt-4">
                     <img src={WorldSvg} alt="" className=""/>
                 </center>
