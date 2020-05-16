@@ -7,7 +7,7 @@ const Layout = (props) => {
     return (
         <div className="flex flex-col font-paras antialiased text-white bg-gray-dark min-h-screen w-full">
             <TopNav />
-            <div className="flex-grow md:w-5/6 w-11/12 mx-auto">
+            <div className="flex-grow ">
                 {props.children}
             </div>
             <BottomNav />

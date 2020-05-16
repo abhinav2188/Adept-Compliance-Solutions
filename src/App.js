@@ -1,10 +1,14 @@
 import React from 'react';
 import Layout from "./Layout/layout";
+import {Switch,Route} from "react-router-dom";
+import Home from "./containers/Home";
 
 function App() {
   return (
     <Layout>
-      <h2>Adept Compliance Solutions</h2>
+      <Switch>
+        <Route path="/" component={Home}></Route>
+      </Switch>
     </Layout>
   );
 }

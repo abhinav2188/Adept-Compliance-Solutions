@@ -1,25 +1,43 @@
 @tailwind base;
 
 h1{
-    @apply text-3xl;
-}
-h2{
     @apply text-2xl;
 }
-h3{
+h2{
     @apply text-xl;
 }
-h4{
+h3{
     @apply text-lg;
 }
-p{
-    @apply text-sm;
+h4{
+    @apply text-base;
 }
-h6{
+p{
     @apply text-xs;
 }
 
-@screen md {
+@screen md{
+    h1{
+        @apply text-3xl;
+    }
+    h2{
+        @apply text-2xl;
+    }
+    h3{
+        @apply text-xl;
+    }
+    h4{
+        @apply text-lg;
+    }
+    p{
+        @apply text-sm;
+    }
+    h6{
+        @apply text-xs;
+    }
+    
+}
+@screen lg {
     h1{
         @apply text-4xl;
     }
