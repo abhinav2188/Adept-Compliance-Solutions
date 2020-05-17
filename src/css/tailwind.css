@@ -18732,6 +18732,14 @@ button:focus,input:focus,a:focus{
   transition-delay: 1000ms;
 }
 
+.w-72{
+  width:18rem;
+}
+
+.w-80{
+  width:20rem;
+}
+
 .h-36{
   height:9rem;
 }
@@ -36776,6 +36784,14 @@ button:focus,input:focus,a:focus{
 
   .sm\:delay-1000 {
     transition-delay: 1000ms;
+  }
+
+  .sm\:w-72{
+    width:18rem;
+  }
+
+  .sm\:w-80{
+    width:20rem;
   }
 
   .sm\:h-36{
@@ -54825,6 +54841,14 @@ button:focus,input:focus,a:focus{
     transition-delay: 1000ms;
   }
 
+  .md\:w-72{
+    width:18rem;
+  }
+
+  .md\:w-80{
+    width:20rem;
+  }
+
   .md\:h-36{
     height:9rem;
   }
@@ -72872,6 +72896,14 @@ button:focus,input:focus,a:focus{
     transition-delay: 1000ms;
   }
 
+  .lg\:w-72{
+    width:18rem;
+  }
+
+  .lg\:w-80{
+    width:20rem;
+  }
+
   .lg\:h-36{
     height:9rem;
   }
@@ -90917,6 +90949,14 @@ button:focus,input:focus,a:focus{
 
   .xl\:delay-1000 {
     transition-delay: 1000ms;
+  }
+
+  .xl\:w-72{
+    width:18rem;
+  }
+
+  .xl\:w-80{
+    width:20rem;
   }
 
   .xl\:h-36{

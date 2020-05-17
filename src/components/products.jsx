@@ -4,13 +4,13 @@ import Product from "./product";
 import Next from "../assets/svgs/next.svg";
 import Prev from "../assets/svgs/prev.svg";
 import {changeActiveElements} from "../carousel";
-import Transition from "react-transition-group/Transition";
 
-const smclass = "transform lg:translate-x-0 translate-x-16";
+const smclass = "transform lg:translate-x-0 translate-x-16 lg:hover:translate-x-0 lg:hover:translate-y-4";
+const lgClass= " transform lg:hover:translate-x-0 lg:hover:translate-y-4"
 const productContent = [
     {
         productName:"Product1",
-        productType:"Bsi Registration"
+        productType:"Bsi Registration",
     },
     {
         productName:"Product2",
@@ -74,10 +74,10 @@ const Products = (props) => {
         <div className="w-full relative py-8 flex flex-col z-0 my-8">
             <img className="-z-10 absolute top-0 right-0 lg:w-1/4 md:w-2/5 w-1/2 transform lg:translate-y-0 translate-y-8" src={productVector} alt=""/>
             <h2 className="font-heading self-center font-bold xl:mt-8">Our Products</h2>
-            <div className="z-0 self-start xl:mt-32 md:mt-24 mt-24 grid lg:grid-cols-4 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pl-32 lg:pl-24 md:pl-16 pl-4">
-            {
+            <div className={`z-0 self-start xl:mt-32 md:mt-24 mt-24 grid lg:grid-cols-4 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pl-32 lg:pl-24 md:pl-16 pl-4`}>
+            {   
                 activeProducts.map((product,index)=>(
-                    <Product key={index} productName={product.productName} productType={product.productType} className={index==2||index==3?smclass:""} />
+                    <Product key={index} productName={product.productName} productType={product.productType} className={index==2||index==3?smclass:lgClass} />
                 ))
             }
             </div>
