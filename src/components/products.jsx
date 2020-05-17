@@ -4,6 +4,7 @@ import Product from "./product";
 import Next from "../assets/svgs/next.svg";
 import Prev from "../assets/svgs/prev.svg";
 import {changeActiveElements} from "../carousel";
+import Transition from "react-transition-group/Transition";
 
 const smclass = "transform lg:translate-x-0 translate-x-16";
 const productContent = [

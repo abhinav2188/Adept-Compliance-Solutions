@@ -1,8 +1,8 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 
 const Product = (props) => {
     return (
-        <div className={`flex flex-col bg-gray-light rounded shodow overflow-hidden ${props.className}`}>
+        <div className={`flex flex-col bg-gray-light rounded shodow overflow-hidden transition-all duration-100 customClass ${props.className}`}>
             <div className="xl:w-48 xl:h-48 lg:w-40 lg:h-40 md:w-32 md:h-32 w-24 h-24 bg-white overflow-hidden">
 
             </div>
