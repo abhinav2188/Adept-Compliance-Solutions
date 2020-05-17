@@ -2,8 +2,8 @@ import React from "react";
 import serviceVector from "../assets/svgs/service-vector.svg"
 import Service from "./service";
 
-const class1 = "transform lg:translate-x-0 -translate-x-8";
-const class2 = "transform lg:-translate-x-16 -translate-x-8";
+const class1 = "transform lg:translate-x-0 -translate-x-24";
+const class2 = "transform lg:-translate-x-16 -translate-x-24";
 const class3 = "transform lg:-translate-x-16 translate-x-0";
 
 const serviceContent = [
@@ -42,7 +42,7 @@ const Services = (props) => {
             <div className="z-0 self-end xl:mt-32 md:mt-24 mt-24 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pr-32 lg:pr-24 md:pr-16 pr-4">
                 {
                     serviceContent.map( (service,index) => 
-                    <Service className={index==2?class1:index==3?class2:index==4||index==5?class3:""} name={service.name} content={service.content}/>
+                    <Service key={index} className={index==2?class1:index==3?class2:index==4||index==5?class3:""} name={service.name} content={service.content}/>
                     )
                 }
             </div>

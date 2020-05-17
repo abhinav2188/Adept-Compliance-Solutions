@@ -615,6 +615,10 @@ h6{
   font-size: .625rem;
 }
 
+button:focus,input:focus,a:focus{
+  outline: 0;
+}
+
 @media (min-width: 768px){
   h1{
     font-size: 1.875rem;
