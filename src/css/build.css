@@ -1,5 +1,15 @@
 @tailwind base;
 
+.animation-scale{
+    @apply transform;
+    @apply duration-75;
+    @apply transition-all;
+    @apply ease-out;
+    @apply scale-100;
+}
+.animation-scale:hover{
+    @apply scale-105;
+}
 h1{
     @apply text-2xl;
 }

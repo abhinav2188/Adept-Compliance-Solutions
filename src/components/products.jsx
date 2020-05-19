@@ -82,10 +82,10 @@ const Products = (props) => {
             }
             </div>
             <div className="self-center mt-16">
-                <button onClick={()=>changeActiveProducts(activeProductsIndex,false)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1">
+                <button onClick={()=>changeActiveProducts(activeProductsIndex,false)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1 animation-scale">
                 <img className="h-4" src={Prev} alt="" />
                 </button>
-                <button onClick={()=>changeActiveProducts(activeProductsIndex,true)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1">
+                <button onClick={()=>changeActiveProducts(activeProductsIndex,true)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1 animation-scale">
                 <img className="h-4" src={Next} alt="" />
                 </button>
             </div>

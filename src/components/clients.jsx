@@ -23,7 +23,7 @@ const Clients = (props) => {
                 <Client />
             </div>
             <p className="font-heading self-center font-bold mt-16">Want us to work for you?</p>
-            <button className="self-center md:px-4 md:py-2 px-2 py-1 border rounded shadow border-orange-mid mt-4 text-orange-mid font-heading uppercase">
+            <button className="self-center md:px-4 md:py-2 px-2 py-1 border rounded shadow border-orange-mid mt-4 text-orange-mid font-heading uppercase animation-scale">
                 <h6>Let us know!</h6>
             </button>
 
