@@ -5,8 +5,8 @@ import Next from "../assets/svgs/next.svg";
 import Prev from "../assets/svgs/prev.svg";
 import {changeActiveElements} from "../carousel";
 
-const smclass = "transform lg:translate-x-0 translate-x-16 lg:hover:translate-x-0 lg:hover:-translate-y-4";
-const lgClass= " transform lg:hover:translate-x-0 lg:hover:-translate-y-4"
+const smclass = "transform lg:translate-x-0 translate-x-16";
+const lgClass= " transform"
 const productContent = [
     {
         productName:"Product1",
