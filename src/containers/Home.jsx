@@ -13,10 +13,11 @@ const Home = (props) => {
             <CompanyStats numberOfClients="1500+" numberOfProducts="400+"/>
             <Services />
             <Products />
-            <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light"/>
+            <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
             <Testimonials />
-            <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light"/>
+            <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
             <Clients />
+            <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
 
         </div>
         
