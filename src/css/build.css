@@ -10,6 +10,9 @@
 .animation-scale:hover{
     @apply scale-105;
 }
+.svg-button:hover{
+    @apply text-orange-mid;
+}
 h1{
     @apply text-2xl;
 }
