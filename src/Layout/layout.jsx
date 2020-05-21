@@ -68,10 +68,10 @@ const Layout = (props) => {
             <SideDrawer show={showSidebar} mainLinks={mainNavlinks} serviceLinks={serviceLinks} close={()=>setShowSidebar(false)}>
                 {sideDrawerContent}
             </SideDrawer>
-            <div className="flex-grow ">
+            <div className={` ${showSidebar?"overflow-y-hidden fixed":"flex-grow"}`}>
                 {props.children}
             </div>
-            {/* <BottomNav /> */}
+            <BottomNav />
             <Footer />
         </div>
     );

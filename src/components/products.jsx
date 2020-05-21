@@ -81,7 +81,7 @@ const Products = (props) => {
                 ))
             }
             </div>
-            <div className="self-center mt-16">
+            <div className="self-center lg:mt-24 mt-16">
                 <button onClick={()=>changeActiveProducts(activeProductsIndex,false)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1 animation-scale">
                 <img className="h-4" src={Prev} alt="" />
                 </button>
