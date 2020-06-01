@@ -1,16 +1,21 @@
 import React,{useState} from "react";
 import productVector from "../assets/svgs/product-vector.svg";
 import Product from "./product";
-import Next from "../assets/svgs/next.svg";
-import Prev from "../assets/svgs/prev.svg";
-import {changeActiveElements} from "../carousel";
+import Carousel from "./UI/carousel";
 
-const smclass = "transform lg:translate-x-0 translate-x-16";
-const lgClass= " transform"
+const childClasses = [
+    "",
+    "",
+    "transform lg:translate-x-0 translate-x-20",
+    "transform lg:translate-x-24 translate-x-20",
+    "transform lg:translate-x-24 translate-x-0",
+    "transform lg:translate-x-24 translate-x-0",
+];
+
 const productContent = [
     {
         productName:"Product1",
-        productType:"Bsi Registration",
+        productType:"Bsi Registration",  
     },
     {
         productName:"Product2",
@@ -62,33 +67,21 @@ const productContent = [
     },
 ];
 
-const Products = (props) => {
+const productList = [];
+productContent.map( product => (
+    productList.push(
+        <Product productName={product.productName} productType={product.productType} />
+    )
+));
 
-    const [activeProductsIndex,setActiveProductsIndex] = useState([0,1,2,3]);
-    const [activeProducts,setActiveProducts] = useState([...productContent.slice(0,4)]);
-    const changeActiveProducts = (activeProductIndexArray,next) => {
-        changeActiveElements(productContent,activeProductIndexArray,next,(x,y) =>{setActiveProductsIndex(x); setActiveProducts(y)});
-    }
+const Products = (props) => {
 
     return (
         <div className="w-full relative py-8 flex flex-col z-0 my-8">
-            <img className="-z-10 absolute top-0 right-0 lg:w-1/4 md:w-2/5 w-1/2 transform lg:translate-y-0 translate-y-8" src={productVector} alt=""/>
+            <img className="-z-10 absolute top-0 right-0 lg:w-1/3 md:w-1/2 w-1/2 transform lg:-translate-y-32 -translate-y-12" src={productVector} alt=""/>
             <h2 className="font-heading self-center font-bold xl:mt-8">Our Products</h2>
-            <div className={`z-0 self-start xl:mt-32 md:mt-24 mt-24 grid lg:grid-cols-4 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pl-32 lg:pl-24 md:pl-16 pl-4`}>
-            {   
-                activeProducts.map((product,index)=>(
-                    <Product key={index} productName={product.productName} productType={product.productType} className={index==2||index==3?smclass:lgClass} />
-                ))
-            }
-            </div>
-            <div className="self-center lg:mt-24 mt-16">
-                <button onClick={()=>changeActiveProducts(activeProductsIndex,false)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1 animation-scale">
-                <img className="h-4" src={Prev} alt="" />
-                </button>
-                <button onClick={()=>changeActiveProducts(activeProductsIndex,true)} className="border lg:m-2 m-1 border-orange-mid rounded-full lg:p-2 p-1 animation-scale">
-                <img className="h-4" src={Next} alt="" />
-                </button>
-            </div>
+            <Carousel elements={productList} activeIndex={[0,1,2,3,4,5]} parentClass="self-start lg:ml-48 ml-12 grid lg:grid-cols-3 lg:gap-8 md:gap-4 grid-cols-2 gap-2 mt-16" childClasses={childClasses} fade/> 
+
         </div>
     );
 }

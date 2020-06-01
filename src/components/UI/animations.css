@@ -1,0 +1,47 @@
+.next-enter{
+    transform: translateX(-100%) skewY(15deg);
+    opacity: 0;
+ }
+ .next-enter-active , .next-exit{
+    transform: translateX(0) skew(0);
+    opacity: 1;
+ }
+ .next-exit-active{
+    transform: translateX(100%) skewY(-15deg);
+    opacity: 0;
+ }
+ .next-enter-active,
+ .next-exit-active{
+    transition: all 500ms;
+ }
+
+ .prev-enter{
+    transform: translateX(100%) skewY(-15deg);
+    opacity: 0;
+ }
+ .prev-enter-active, .prev-exit{
+    transform: translateX(0) skewY(0);
+    opacity: 1;
+ }
+ .prev-exit-active{
+    transform: translateX(-100%) skewY(15deg);
+    opacity: 0;
+ }
+ .prev-enter-active,
+ .prev-exit-active{
+    transition: all 500ms;
+ }
+
+.fade-enter{
+   opacity: 0;
+}
+.fade-enter-active , .fade-exit{
+   opacity: 1;
+}
+.fade-exit-active{
+   opacity: 0;
+}
+.fade-enter-active,
+.fade-exit-active{
+   transition: all 500ms;
+}
