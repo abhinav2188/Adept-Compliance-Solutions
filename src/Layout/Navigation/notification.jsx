@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "./Dropdown";
+import Dropdown from "../../components/UI/Dropdown";
 
 const icon = 
 <svg className="md:h-5 h-4 hover:text-orange-mid" viewBox="0 0 28 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

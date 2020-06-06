@@ -19,12 +19,12 @@ const Clients = (props) => {
         Join these multi national companies.
       </p>
       <div className="flex lg:w-2/3 w-3/4 py-8 overflow-x-scroll mx-auto items-center mt-16">
-        <p>element1</p>
-        <p>element2</p>
-        <p>element3</p>
-        <p>element4</p>
-        <p>element5</p>
-        <p>element6</p>
+      <Client />
+      <Client />
+      <Client />
+      <Client />
+      <Client />
+      <Client />
       </div>
       <p className="font-heading self-center font-bold lg:mt-24 mt-16">
         Want us to work for you?

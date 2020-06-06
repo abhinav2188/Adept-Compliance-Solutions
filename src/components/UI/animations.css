@@ -1,13 +1,13 @@
 .next-enter{
-    transform: translateX(-100%) skewY(15deg);
+    transform: translateX(-100%) ;
     opacity: 0;
  }
  .next-enter-active , .next-exit{
-    transform: translateX(0) skew(0);
+    transform: translateX(0) ;
     opacity: 1;
  }
  .next-exit-active{
-    transform: translateX(100%) skewY(-15deg);
+    transform: translateX(100%) ;
     opacity: 0;
  }
  .next-enter-active,
@@ -16,15 +16,15 @@
  }
 
  .prev-enter{
-    transform: translateX(100%) skewY(-15deg);
+    transform: translateX(100%);
     opacity: 0;
  }
  .prev-enter-active, .prev-exit{
-    transform: translateX(0) skewY(0);
+    transform: translateX(0) ;
     opacity: 1;
  }
  .prev-exit-active{
-    transform: translateX(-100%) skewY(15deg);
+    transform: translateX(-100%) ;
     opacity: 0;
  }
  .prev-enter-active,
@@ -44,4 +44,25 @@
 .fade-enter-active,
 .fade-exit-active{
    transition: all 500ms;
+}
+
+
+.pop-enter{
+   transform: translateY(-2rem) ;
+   opacity: 0;
+}
+.pop-enter-done{
+   transform: translateY(1.5rem);
+   transition: all 200ms;
+   opacity: 1;
+}
+.pop-exit{
+   transform: translateY(1.5rem);
+   opacity: 1;
+}
+.pop-exit-active{
+   transform: translateY(-2rem);
+   transition: all 200ms;
+   opacity: 0;
+
 }

@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Testimonial from "./testimonial";
-import { changeActiveElements } from "../carousel";
-import Next from "../assets/svgs/next.svg";
-import Prev from "../assets/svgs/prev.svg";
 import Carousel from "./UI/carousel";
 
 const testimonialContent = [
@@ -55,11 +52,10 @@ const Testimonials = (props) => {
         Here's what some of our clients are saying.
       </p>
       <Carousel
-        parentClass="mt-16 grid md:grid-cols-2 grid-cols-1 xl:gap-8 lg:gap-6 md:gap-4 gap-2 self-center"
+        parentClass="my-8 grid md:grid-cols-2 grid-cols-1 xl:gap-8 lg:gap-6 md:gap-4 gap-2 self-center"
         elements={testimonialList}
         activeIndex={[0, 1]}
         automate
-        fade
       />
     </div>
   );

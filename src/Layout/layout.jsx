@@ -4,7 +4,7 @@ import BottomNav from "./bottomNav";
 import Footer from "./footer";
 import SideDrawer from "./Navigation/sideDrawer";
 import NavItems from "./Navigation/NavItems";
-import Dropdown from "./Navigation/Dropdown";
+import Dropdown from "../components/UI/Dropdown";
 
 const mainNavlinks = [
     {

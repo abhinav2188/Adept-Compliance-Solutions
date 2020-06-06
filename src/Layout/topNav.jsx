@@ -1,10 +1,11 @@
 import React,{useState} from "react";
 import NavItems from "./Navigation/NavItems";
-import Dropdown from "./Navigation/Dropdown";
+import Dropdown from "../components/UI/Dropdown";
 import phoneSvg from "../assets/svgs/phone";
 import mailSvg from "../assets/svgs/mail";
 import Notifications from "./Navigation/notification";
 import menuSvg from "../assets/svgs/menu.svg";
+import Popper from "../components/UI/popper";
 
 const cred = {
     phone : "+91 1235451213",
@@ -30,12 +31,12 @@ const TopNav = (props) => {
                 </div>
                 <div className="flex items-center">
                     <Notifications notifications={["n1","n2","n3"]}></Notifications>
-                    <Dropdown name={phone} right={true} hoverable>
+                    <Popper name={phone}>
                         <h6>{cred.phone}</h6>
-                    </Dropdown>
-                    <Dropdown name={mail} right={true} hoverable>
+                    </Popper>
+                    <Popper name={mail} >
                         <h6>{cred.mail}</h6>
-                    </Dropdown>
+                    </Popper>
                 </div>
             </div>
         </div>
