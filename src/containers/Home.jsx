@@ -19,7 +19,6 @@ const Home = (props) => {
             <Testimonials />
             <Hline />
             <Clients />
-            <Hline />
         </div>
         
     );

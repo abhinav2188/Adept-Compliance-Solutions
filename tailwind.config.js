@@ -26,6 +26,10 @@ module.exports = {
       '3/5':'60%',
       '4/5':'80%'
     },
+    maxWidth:{
+      '1/4':'25%',
+      '1/2':'50%'
+    },
     minWidth: {
       '0': '0',
       '1/3': '33.33%',
@@ -39,6 +43,7 @@ module.exports = {
     minHeight:{
       '24':'6rem',
       '32':'8rem',
+      'screen':'100vh'
     },
     extend: {
       colors:{

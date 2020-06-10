@@ -56,9 +56,11 @@ const serviceLinks = [
 
 const BottomNav = (props) => {
     return (
-        <div className="grid md:grid-cols-4 grid-cols-1 md:gap-4 gap-8 lg:w-5/6 w-3/4 mx-auto py-8 lg:my-16 my-8 justify-around flex-wrap md:text-left text-center">
-            <div className="flex flex-col md:items-start items-center">
-                <div className="px-2 py-1 bg-white lg:w-48 md:w-36 w-24 mb-2">
+        <>
+        <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
+        <div className="flex md:w-5/6 w-3/4 mx-auto py-8 my-8">
+            <div className="flex flex-col md:items-start items-center max-w-1/4 lg:mr-4 md:mr-3 mr-2">
+                <div className="px-8 py-2 bg-white lg:w-48 md:w-36 w-24 mb-2">
                     <img className="w-full" src={fullLogo} alt="" />
                 </div>
                 <p className="my-1">Adept Compliance Solutions</p>
@@ -66,16 +68,16 @@ const BottomNav = (props) => {
                 <p className="my-1">{cred.phone}</p>
                 <p className="my-1">{cred.email}</p>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col max-w-1/4 lg:mr-4 md:mr-3 mr-2">
                 <p className="uppercase mb-2 font-heading font-bold">Services</p>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col max-w-1/4 lg:mr-4 md:mr-3 mr-2">
                 <p className="uppercase mb-2 font-heading font-bold">COMPANY</p>
                 <p>
                 <NavLink exact to="/about">About</NavLink> 
                 </p>
             </div>
-            <form className="flex flex-col text-left bg-gray-mid p-4 rounded">
+            <form className="flex flex-col text-left bg-gray-mid p-4 rounded flex-grow">
                 <p className="uppercase mb-2 font-heading font-bold">Query?</p>
                 <p className="flex flex-col my-1">
                     Name
@@ -93,7 +95,7 @@ const BottomNav = (props) => {
                 <p>submit</p></button>
             </form>
         </div>
-        
+      </>  
     );
 }
 
