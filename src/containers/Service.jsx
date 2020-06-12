@@ -1,8 +1,7 @@
-import React,{useState} from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import serviceVector from "../assets/svgs/service-vector.svg";
-import Stepper from "../components/UI/Stepper";
-import HorizontalStepper from "../components/UI/HorizontalStepper";
+import Stepper from "../components/UI/stepper";
 
 const timeline = [
     {
@@ -37,7 +36,6 @@ const Service = () => {
       <img className="w-24 bg-white self-center" src="https://img.favpng.com/15/15/7/bureau-of-indian-standards-ministry-of-electronics-and-information-technology-technical-standard-brand-liaison-png-favpng-U1GU8x8FjqWfCvbKRvrBZZUGb.jpg" alt=""/>
       <h2 className="font-heading font-bold self-center">{serviceName}</h2>
         <Stepper data={timeline}/>
-        <HorizontalStepper />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../../components/UI/Dropdown";
+import Popper from "../../components/UI/popper";
 
 const icon = 
 <svg className="md:h-5 h-4 hover:text-orange-mid" viewBox="0 0 28 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -14,15 +14,15 @@ const Notification = (props) => {
     return (
         <div className="relative">
             { props.notifications.length > 0 ?
-                <div className="bg-gray-dark text-2xs absolute right-0 px-1 rounded-lg transform -translate-y-2">{props.notifications.length}</div>:""
+                <div className="bg-gray-dark text-2xs absolute right-0 w-4 h-4 flex justify-center items-center rounded-full z-10 transform -translate-y-2">{props.notifications.length}</div>:""
             }
-            <Dropdown name={icon} right={true} hoverable>
+            <Popper name={<p>Updates</p>} right>
                 <div className="flex flex-col">
                     {props.notifications.map(notifiction => 
                         <p className="pb-2 border-b border-gray-mid">{notifiction}</p>
                     )}
                 </div>
-            </Dropdown>
+            </Popper>
         </div>
     );
 }

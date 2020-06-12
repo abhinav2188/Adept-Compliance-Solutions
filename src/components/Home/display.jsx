@@ -1,18 +1,18 @@
 import React from "react";
-import Logo from "../assets/adept logo.png";
-import WorldSvg from "../assets/svgs/world-map.svg";
-import CurveSvg from "../assets/svgs/curve.svg";
-import tsvg from "../assets/svgs/transparency.svg";
-import csvg from "../assets/svgs/cost-effective.svg";
-import psvg from "../assets/svgs/proficent.svg";
-import fsvg from "../assets/svgs/fast-approval.svg";
-import "./display.css";
+import Logo from "../../assets/adept logo.png";
+import WorldSvg from "../../assets/svgs/world-map.svg";
+import CurveSvg from "../../assets/svgs/curve.svg";
+import tsvg from "../../assets/svgs/transparency.svg";
+import csvg from "../../assets/svgs/cost-effective.svg";
+import psvg from "../../assets/svgs/proficent.svg";
+import fsvg from "../../assets/svgs/fast-approval.svg";
+import staticContent from "../../assets/staticContent";
 
 const Display = (props) => {
   return (
     <div className="w-full flex flex-col items-center py-8 relative xl:mb-16 lg:mb-12 md:mb-10 mb-6">
       {/* background container, company key values blocks*/}
-      <div className="absolute top-0 bg-gray-mid w-full overflow-hidden text-gray-dark display-back">
+      <div className="absolute top-0 bg-gray-mid w-full overflow-hidden text-gray-dark h-128 lg:h-136">
         <center className="mt-4 -z-20">
           <img src={WorldSvg} alt="" className="" />
         </center>
@@ -49,8 +49,8 @@ const Display = (props) => {
       {/* logo container */}
       <div className="flex flex-col items-center z-0 lg:pt-0 md:pt-8">
         <img className="lg:w-24 md:w-20 w-16" src={Logo} alt=""></img>
-        <p className="text-blue-logo font-heading font-bold">
-          Adept Compliance Solutions
+        <p className="text-blue-logo font-heading font-bold capitalize">
+          {staticContent.companyData.name}
         </p>
       </div>
 
@@ -61,19 +61,14 @@ const Display = (props) => {
         </div>
         <div className="xl:px-32 md:px-16 px-12 xl:py-16 md:py-8 py-8 flex flex-col h-full ">
           <h3 className="font-heading font-black md:mb-8 mb-4 leading-tight">
-            Get Fastest Product Testing and Certification Services in India!
+            {staticContent.companyTag.tagline}
           </h3>
-          <p className="tracking-wide">
-            Worried about Product Certification? Here we are available to help
-            you at every stage of Product testing and Certification. Adept
-            Compliance is your single window for your all certification
-            requirements.
-          </p>
+          <p className="tracking-wide">{staticContent.companyTag.content}</p>
           <button
             onClick={() => alert("click")}
             className="md:mt-20 mt-16 px-6 py-2 bg-white text-orange-mid self-center flex-end rounded capitalize font-bold font-heading tracking-tight"
           >
-            <p>Contact an Expert</p>
+            <p>{staticContent.companyTag.actionButtonContent}</p>
           </button>
         </div>
       </div>

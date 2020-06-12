@@ -24,7 +24,8 @@ const Carousel = (props) => {
       const id = auto();
       return () => clearInterval(id);
     }
-  }, []);
+  }, [props.automate]);
+
   const nextActiveIndex = (index) => {
     return (index + activeElementsCount) % elementIds.length;
   };
@@ -36,19 +37,13 @@ const Carousel = (props) => {
 
   const next = () => {
     setActiveIndex((prevIndex) => {
-      let arr = [];
-      prevIndex.map((i) => {
-        arr.push(nextActiveIndex(i));
-      });
+      let arr = prevIndex.map(i => nextActiveIndex(i));
       return arr;
     });
   };
   const previous = () => {
     setActiveIndex((prevIndex) => {
-      let arr = [];
-      prevIndex.map((i) => {
-        arr.push(previousActiveIndex(i));
-      });
+      let arr = prevIndex.map(i => previousActiveIndex(i) );
       return arr;
     });
   };

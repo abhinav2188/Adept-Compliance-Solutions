@@ -1,57 +1,7 @@
 import React from "react";
 import fullLogo from "../assets/full-logo.png";
 import {NavLink} from "react-router-dom";
-
-const cred = {
-    phone:"+91-9999-39-2077",
-    email:"info@adeptcs.in",
-    address:"69, Goyla Khurd Village, South West Delhi, Delhi, 110071"
-}
-const mainNavlinks = [
-    {
-        link:"/",
-        name:"Home"
-    },
-    {
-        link:"/about",
-        name:"About"
-    },
-    {
-        link:"/downloads",
-        name:"Downloads"
-    },
-    {
-        link:"/clients",
-        name:"clients"
-    },
-    {
-        link:"/updates",
-        name:"updates"
-    },
-
-];
-const serviceLinks = [
-    {
-        link:"/services/service1",
-        name:"service1"
-    },
-    {
-        link:"/services/service2",
-        name:"service3"
-    },
-    {
-        link:"/services/service3",
-        name:"service3"
-    },
-    {
-        link:"/services/service4",
-        name:"service4"
-    },
-    {
-        link:"/services/service5",
-        name:"service5 BSI Registration"
-    },
-];
+import staticContent from "../assets/staticContent";
 
 
 const BottomNav = (props) => {
@@ -63,10 +13,10 @@ const BottomNav = (props) => {
                 <div className="px-8 py-2 bg-white lg:w-48 md:w-36 w-24 mb-2">
                     <img className="w-full" src={fullLogo} alt="" />
                 </div>
-                <p className="my-1">Adept Compliance Solutions</p>
-                <p className="my-1">{cred.address}</p>
-                <p className="my-1">{cred.phone}</p>
-                <p className="my-1">{cred.email}</p>
+                <p className="my-1">{staticContent.companyData.name}</p>
+                <p className="my-1">{staticContent.companyData.address}</p>
+                <p className="my-1">{staticContent.companyData.phone}</p>
+                <p className="my-1">{staticContent.companyData.email}</p>
             </div>
             <div className="flex flex-col max-w-1/4 lg:mr-4 md:mr-3 mr-2">
                 <p className="uppercase mb-2 font-heading font-bold">Services</p>

@@ -1,7 +1,6 @@
 import React from "react";
-import serviceVector from "../assets/svgs/service-vector.svg";
-import Service from "./service";
-import Carousel from "../components/UI/carousel";
+import serviceVector from "../../assets/svgs/service-vector.svg";
+import Carousel from "../UI/carousel";
 import { Link } from "react-router-dom";
 
 const childClasses = [
@@ -71,18 +70,30 @@ const serviceContent = [
   },
 ];
 
-const serviceList = [];
-serviceContent.map((service) =>
-  serviceList.push(
+const Service = (props) => {
+  return (
+    <div
+      className={`flex flex-col xl:w-64 xl:h-64 lg:w-48 lg:h-48 md:w-40 md:h-40 w-32 h-32 lg:p-4 md:p-3 p-2 bg-gray-light rounded transition-all duration-100 transform hover:-translate-y-4 ease-out shadow ${props.className}`}
+    >
+      <h4 className="">{props.name}</h4>
+      {props.content.map((content, index) => (
+        <p key={index} className="leading-none my-1">
+          {content}
+        </p>
+      ))}
+    </div>
+  );
+};
+
+const serviceList = serviceContent.map((service) =>
     <Link to={`service/${service.name}`}>
       <Service name={service.name} content={service.content} />
     </Link>
-  )
 );
 
 const Services = (props) => {
   return (
-    <div className="w-full relative py-8 flex flex-col z-0 my-8">
+    <div id="services" className="w-full relative py-8 flex flex-col z-0 my-8">
       <img
         className="-z-10 absolute top-0 transform lg:-translate-y-32 -translate-y-4 lg:w-1/3 md:w-2/5 w-1/2"
         src={serviceVector}

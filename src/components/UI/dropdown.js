@@ -2,14 +2,6 @@ import React,{useState} from "react";
 import {CSSTransition} from "react-transition-group";
 import "./animations.css"
 
-const styles = {
-    enter:"opacity-0 -translate-y-8 transform ",
-    enterActive:"opacity-100 transform translate-y-6 transtion-all duration-200 ease-out",
-    exiting:"opacity-100 transform translate-y-6",
-    exitActive:"opacity-0 -translate-y-8 transform transtion-all duration-200 ease-out"
-} 
-
-
 
 const Dropdown = (props) => {
     const [show,setShow] = useState(false);

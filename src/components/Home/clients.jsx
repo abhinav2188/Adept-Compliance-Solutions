@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
-import "./clients.css";
-import Client from "./client";
-import vector3 from "../assets/svgs/vector-3.svg";
+import React from "react";
+import vector3 from "../../assets/svgs/vector-3.svg";
+
+const Client = (props) => {
+  return (
+      <div className="xl:px-8 lg:px-6 md:px-4 px-2 lg:min-w-1/4 md:min-w-1/3 min-w-1/2">
+          <img className={`w-full rounded-sm ${props.logoSrc?"":"min-h-24 bg-white "}`} src={props.logoSrc} alt="" />
+      </div>
+  );
+}
+
 
 const Clients = (props) => {
   return (

@@ -4,10 +4,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "./css/tailwind.css";
 import {BrowserRouter} from "react-router-dom";
+import "./css/scrollbar.css"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <App />
     </BrowserRouter>
   </React.StrictMode>,

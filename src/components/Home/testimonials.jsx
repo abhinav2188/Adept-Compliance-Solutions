@@ -1,6 +1,18 @@
 import React from "react";
-import Testimonial from "./testimonial";
-import Carousel from "./UI/carousel";
+import Carousel from "../UI/carousel";
+
+const Testimonial = (props) => {
+  return (
+      <div className="lg:w-80 lg:h-40 md:w-72 md:h-40 w-64 h-36 bg-gray-light flex flex-col lg:p-4 md:p-3 p-2 rounded shadow">
+          <div className="flex lg:mb-4 md:mb-3 mb-2 items-center">
+              <img className="w-6 h-6 rounded-full bg-white mr-4" src="https://picsum.photos/200" alt=""/>
+              <p className="uppercase">{props.name}</p>
+          </div>
+          <p className="leading-none">{props.comment}</p>
+      </div>
+      
+  );
+}
 
 const testimonialContent = [
   {
@@ -35,16 +47,14 @@ const testimonialContent = [
   },
 ];
 
-const testimonialList = [];
-testimonialContent.map((testimonial) => {
-  testimonialList.push(
+const testimonialList = 
+testimonialContent.map((testimonial) =>
     <Testimonial name={testimonial.name} comment={testimonial.comment} />
-  );
-});
+);
 
 const Testimonials = (props) => {
   return (
-    <div className="flex flex-col w-full py-8 my-8 z-10">
+    <div className="flex flex-col w-full py-8 my-8 z-10 overflow-x-hidden">
       <h2 className="font-heading self-center font-bold xl:mt-8">
         Praise for Us
       </h2>
