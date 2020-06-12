@@ -1,11 +1,11 @@
 import React from "react";
-import NavItems from "./Navigation/NavItems";
-import phoneSvg from "../assets/svgs/phone";
-import mailSvg from "../assets/svgs/mail";
-import Notifications from "./Navigation/notification";
-import menuSvg from "../assets/svgs/menu.svg";
-import Popper from "../components/UI/popper";
-import staticContent from "../assets/staticContent";
+import NavItems from "./navigation/navItems";
+import phoneSvg from "../../assets/svgs/phone";
+import mailSvg from "../../assets/svgs/mail";
+import Notifications from "./navigation/notification";
+import menuSvg from "../../assets/svgs/menu.svg";
+import Popper from "../UI/popper";
+import staticContent from "../../assets/staticContent";
 
 const phone = <div className="md:h-5 h-4 text-white hover:text-orange-mid">{phoneSvg}</div>
 const mail =  <div className="md:h-5 h-4 text-white hover:text-orange-mid">{mailSvg}</div>

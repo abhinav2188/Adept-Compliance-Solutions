@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import TopNav from "./topNav";
 import BottomNav from "./bottomNav";
 import Footer from "./footer";
-import Slider from "../components/UI/slider";
-import NavItems from "./Navigation/NavItems";
+import Slider from "../UI/slider";
+import NavItems from "./navigation/navItems";
 
 const Layout = (props) => {
   const [showSidebar, setShowSidebar] = useState(false);

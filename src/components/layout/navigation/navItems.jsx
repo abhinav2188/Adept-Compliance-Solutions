@@ -1,6 +1,6 @@
 import React from "react";
-import NavItem from "./NavItem";
-import fullLogo from "../../assets/full-logo.png";
+import NavItem from "./navItem";
+import fullLogo from "../../../assets/full-logo.png";
 
 
 const NavItems = (props) => {

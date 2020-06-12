@@ -1,5 +1,5 @@
 import React from "react";
-import Popper from "../../components/UI/popper";
+import Popper from "../../UI/popper";
 
 const Notification = (props) => {
     return (

@@ -1,7 +1,7 @@
 import React from "react";
-import fullLogo from "../assets/full-logo.png";
+import fullLogo from "../../assets/full-logo.png";
 import {NavLink} from "react-router-dom";
-import staticContent from "../assets/staticContent";
+import staticContent from "../../assets/staticContent";
 
 
 const BottomNav = (props) => {
