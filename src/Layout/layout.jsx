@@ -14,7 +14,7 @@ const Layout = (props) => {
         <Slider show={showSidebar} close={() => setShowSidebar(false)}>
           <NavItems col/>
         </Slider>
-        <div className="flex-grow">{props.children}</div>
+        <div className={`${showSidebar?"h-full overflow-hidden":"flex-grow"}`}>{props.children}</div>
       </div>
       <BottomNav />
       <Footer />
