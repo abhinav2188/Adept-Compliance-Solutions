@@ -10,7 +10,7 @@ const Notification = (props) => {
             <Popper name={<p>Updates</p>} right>
                 <div className="flex flex-col">
                     {props.notifications.map(notifiction => 
-                        <p className="pb-2 border-b border-gray-mid">{notifiction}</p>
+                        <p className="py-1 border-b border-gray-mid">{notifiction}</p>
                     )}
                 </div>
             </Popper>

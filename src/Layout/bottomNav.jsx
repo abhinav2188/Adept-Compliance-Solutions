@@ -9,7 +9,7 @@ const BottomNav = (props) => {
         <>
         <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-4 gap-2 md:w-5/6 w-3/4 mx-auto py-8 my-8">
-            <div className="flex flex-col md:items-start items-center">
+            <div id="contact" className="flex flex-col md:items-start items-center">
                 <div className="px-8 py-2 bg-white w-48 mb-2">
                     <img className="w-full" src={fullLogo} alt="" />
                 </div>

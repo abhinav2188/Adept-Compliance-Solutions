@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React,{useEffect} from "react";
+import { useParams , useLocation} from "react-router-dom";
 import serviceVector from "../assets/svgs/service-vector.svg";
 import Stepper from "../components/UI/stepper";
 
@@ -24,6 +24,15 @@ const timeline = [
 
 
 const Service = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scroll({
+      top: location.hash
+        ? document.querySelector(location.hash).offsetTop
+        : "0",
+      behavior: "smooth",
+    });
+  }, [location]);
   const { serviceName } = useParams();
   return (
     <div className="w-full relative py-8 flex flex-col z-0 my-8 items-center">
