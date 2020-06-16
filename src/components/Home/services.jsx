@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import serviceVector from "../../assets/svgs/service-vector.svg";
 import Carousel from "../UI/carousel";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../clientInstance";
 
 const childClasses = [
   "",
@@ -11,87 +12,48 @@ const childClasses = [
   "transform lg:-translate-x-16 translate-x-0",
   "transform lg:-translate-x-16 translate-x-0",
 ];
-const serviceContent = [
-  {
-    name: "BIS Registration",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "Product Approval",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "BIS Registration",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "BIS Registration",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "ISI Registration",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "Product Evaluation",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "RSII Registration",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-  {
-    name: "Lorem Ipsum",
-    content: [
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit",
-      "faucibus bibendum velit sed venenatis",
-    ],
-  },
-];
 
 const Service = (props) => {
   return (
     <div
-      className={`flex flex-col xl:w-64 xl:h-64 lg:w-48 lg:h-48 md:w-40 md:h-40 w-32 h-32 lg:p-4 md:p-3 p-2 bg-gray-light rounded transition-all duration-100 transform hover:-translate-y-4 ease-out shadow ${props.className}`}
+      className={`flex flex-col relative z-0 xl:w-64 xl:min-h-64 lg:w-48 lg:min-h-48 md:w-40 md:min-h-40 w-32 min-h-32 h-full lg:p-4 md:p-3 p-2 bg-gray-light rounded shadow ${props.className}`}
     >
+      <img
+        className="w-4/5 h-4/5  -z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-25"
+        src={props.imgSrc}
+        alt=""
+      />
       <h4 className="">{props.name}</h4>
-      {props.content.map((content, index) => (
-        <p key={index} className="leading-none my-1">
-          {content}
-        </p>
-      ))}
+      <p className="leading-none my-1 flex-grow">{props.content}</p>
+      <Link
+        to={`service/${props.name}`}
+        className="mt-2 border rounded-sm self-center px-1 capitalize font-heading hover:scale-110 transition transform duration-75"
+      >
+        <h6>Read More</h6>
+      </Link>
     </div>
   );
 };
 
-const serviceList = serviceContent.map((service) =>
-    <Link to={`service/${service.name}`}>
-      <Service name={service.name} content={service.content} />
-    </Link>
-);
-
 const Services = (props) => {
+  const [serviceList, setServiceList] = useState([]);
+  useEffect(() => {
+    axiosInstance
+      .get("service/all")
+      .then((response) => response.data.data)
+      .then((data) =>
+        data.map((d) => (
+          <Service
+            name={d.name}
+            content={d.headline}
+            imgSrc={`http://localhost:3001/api/file/${d.serviceLogo}`}
+          />
+        ))
+      )
+      .then((list) => setServiceList(list))
+      .catch((error) => alert(error));
+  }, []);
+
   return (
     <div id="services" className="w-full relative py-8 flex flex-col z-0 my-8">
       <img

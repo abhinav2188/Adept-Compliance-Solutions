@@ -8072,6 +8072,18 @@ button:focus,input:focus,a:focus{
   min-height: 8rem;
 }
 
+.min-h-40 {
+  min-height: 10rem;
+}
+
+.min-h-48 {
+  min-height: 12rem;
+}
+
+.min-h-64 {
+  min-height: 16rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -26464,6 +26476,18 @@ button:focus,input:focus,a:focus{
 
   .sm\:min-h-32 {
     min-height: 8rem;
+  }
+
+  .sm\:min-h-40 {
+    min-height: 10rem;
+  }
+
+  .sm\:min-h-48 {
+    min-height: 12rem;
+  }
+
+  .sm\:min-h-64 {
+    min-height: 16rem;
   }
 
   .sm\:min-h-screen {
@@ -44861,6 +44885,18 @@ button:focus,input:focus,a:focus{
     min-height: 8rem;
   }
 
+  .md\:min-h-40 {
+    min-height: 10rem;
+  }
+
+  .md\:min-h-48 {
+    min-height: 12rem;
+  }
+
+  .md\:min-h-64 {
+    min-height: 16rem;
+  }
+
   .md\:min-h-screen {
     min-height: 100vh;
   }
@@ -63256,6 +63292,18 @@ button:focus,input:focus,a:focus{
     min-height: 8rem;
   }
 
+  .lg\:min-h-40 {
+    min-height: 10rem;
+  }
+
+  .lg\:min-h-48 {
+    min-height: 12rem;
+  }
+
+  .lg\:min-h-64 {
+    min-height: 16rem;
+  }
+
   .lg\:min-h-screen {
     min-height: 100vh;
   }
@@ -81649,6 +81697,18 @@ button:focus,input:focus,a:focus{
 
   .xl\:min-h-32 {
     min-height: 8rem;
+  }
+
+  .xl\:min-h-40 {
+    min-height: 10rem;
+  }
+
+  .xl\:min-h-48 {
+    min-height: 12rem;
+  }
+
+  .xl\:min-h-64 {
+    min-height: 16rem;
   }
 
   .xl\:min-h-screen {
