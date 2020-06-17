@@ -44,14 +44,17 @@ const AddService = () => {
         "content-type": "multipart/form-data",
       },
     })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error.response.data));
+      .then((response) => {setResponse(JSON.stringify(response.data)); setAdd(false);})
+      .catch((error) => {setResponse(JSON.stringify(error.response?error.response.data:error)); setAdd(false);});
   };
 
+  const [add,setAdd] = useState(true);
+  const [response,setResponse] = useState("");
   return (
+  add?  
     <div>
       <form
-        className="md:w-136 w-full border border-gray-light rounded p-4 bg-gray-dark flex flex-col"
+        className="md:w-136 w-80 border border-gray-light rounded p-4 bg-gray-dark flex flex-col"
         onSubmit={onSubmtiHandler}
       >
         <h4 className="font-heading">Add Service</h4>
@@ -74,7 +77,7 @@ const AddService = () => {
             type="file"
             name="serviceLogo"
             placeholder="choose image"
-            className="bg-gray-mid"
+            className="bg-gray-mid w-full"
             accept="image/png, image/jpeg"
             onChange={onFileChangeHandler}
           />
@@ -83,6 +86,10 @@ const AddService = () => {
           Next
         </Button>
       </form>
+    </div>:
+    <div className="bg-gray-mid border-gray-light rounded p-4">
+    <p>{response}</p>
+    <Button color="primary" onClick={() => setAdd(true)}>Add another Service</Button>
     </div>
   );
 };
