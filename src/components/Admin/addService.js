@@ -32,8 +32,8 @@ const AddService = () => {
     const params = new FormData();
     params.append("serviceName", data.serviceName);
     params.append("serviceHeadline", data.serviceHeadline);
-    if(data.serviceLogo)
-    params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
+    if (data.serviceLogo)
+      params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
 
     axiosInstance({
       method: "POST",
@@ -44,14 +44,22 @@ const AddService = () => {
         "content-type": "multipart/form-data",
       },
     })
-      .then((response) => {setResponse(JSON.stringify(response.data)); setAdd(false); authContext.setDataChanged(prevState=>!prevState)})
-      .catch((error) => {setResponse(JSON.stringify(error.response?error.response.data:error)); setAdd(false);});
+      .then((response) => {
+        setResponse(JSON.stringify(response.data));
+        setAdd(false);
+        authContext.setDataChanged((prevState) => !prevState);
+      })
+      .catch((error) => {
+        setResponse(
+          JSON.stringify(error.response ? error.response.data : error)
+        );
+        setAdd(false);
+      });
   };
 
-  const [add,setAdd] = useState(true);
-  const [response,setResponse] = useState("");
-  return (
-  add?  
+  const [add, setAdd] = useState(true);
+  const [response, setResponse] = useState("");
+  return add ? (
     <div>
       <form
         className="md:w-136 w-80 border border-gray-light rounded p-4 bg-gray-dark flex flex-col"
@@ -71,25 +79,25 @@ const AddService = () => {
           onChange={onChangeHandler}
           value={data.serviceHeadline}
         />
-        <label for="serviceLogo" className="my-2">
-          <p>ServiceLogo</p>
-          <input
-            type="file"
-            name="serviceLogo"
-            placeholder="choose image"
-            className="bg-gray-mid w-full"
-            accept="image/png, image/jpeg"
-            onChange={onFileChangeHandler}
-          />
-        </label>
+        <Input
+          type="file"
+          name="serviceLogo"
+          placeholder="choose image"
+          className="bg-gray-mid w-full"
+          accept="image/png, image/jpeg"
+          onChange={onFileChangeHandler}
+        />
         <Button type="submit" className="self-center">
           Next
         </Button>
       </form>
-    </div>:
+    </div>
+  ) : (
     <div className="bg-gray-mid border-gray-light rounded p-4">
-    <p>{response}</p>
-    <Button color="primary" onClick={() => setAdd(true)}>Add another Service</Button>
+      <p>{response}</p>
+      <Button color="primary" onClick={() => setAdd(true)}>
+        Add another Service
+      </Button>
     </div>
   );
 };
