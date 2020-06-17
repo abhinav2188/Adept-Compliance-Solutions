@@ -2,9 +2,25 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 import Button from "../UI/Button";
+import axiosInstance from "../../adminInstance";
 
 const Service = (props) => {
   const authContext = useContext(AuthContext);
+
+  const handleDelete = (id) => {
+    axiosInstance({
+      method: "DELETE",
+      url: "service/" + id,
+      headers: {
+        "auth-token": authContext.token,
+      },
+    })
+      .then((response) => {authContext.setDataChanged(prevState => !prevState); alert(JSON.stringify(response.data))})
+      .catch((error) =>
+        alert(JSON.stringify(error.response ? error.response.data : error))
+      );
+  };
+
   return (
     <div
       className={`flex flex-col relative z-0 xl:w-64 xl:min-h-64 lg:w-48 lg:min-h-48 md:w-40 md:min-h-40 w-32 min-h-32 h-full lg:p-4 md:p-3 p-2 bg-gray-light rounded shadow ${props.className}`}
@@ -24,7 +40,9 @@ const Service = (props) => {
       </Link>
       {authContext.token && (
         <div className="flex">
-          <Button color="warning">Delete</Button>
+          <Button color="warning" onClick={() => handleDelete(props.id)}>
+            Delete
+          </Button>
           <Button color="secondary">Edit</Button>
         </div>
       )}

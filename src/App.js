@@ -9,9 +9,10 @@ import AuthContext from "./context/authContext";
 
 function App() {
   const [token, setToken] = useState(window.sessionStorage.getItem('token'));
+  const [dataChanged, setDataChanged] = useState(false);
   return (
     <Layout>
-      <AuthContext.Provider value={{ token: token, setToken: setToken }}>
+      <AuthContext.Provider value={{ token: token, setToken: setToken, dataChanged:dataChanged, setDataChanged:setDataChanged }}>
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/service/:serviceName" component={Service}></Route>

@@ -30,6 +30,7 @@ const Services = (props) => {
       .then((data) =>
         data.map((d) => (
           <Service
+            id={d._id}
             name={d.name}
             content={d.headline}
             imgSrc={`http://localhost:3001/api/file/${d.serviceLogo}`}
@@ -38,7 +39,7 @@ const Services = (props) => {
       )
       .then((list) => setServiceList(list))
       .catch((error) => alert(error));
-  }, []);
+  }, [authContext.dataChanged]);
 
   return (
     <>
