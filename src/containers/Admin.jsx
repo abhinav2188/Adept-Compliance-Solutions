@@ -2,26 +2,8 @@ import React, { useState, useContext } from "react";
 import axiosInstance from "../adminInstance";
 import AuthContext from "../context/authContext";
 import { useHistory } from "react-router-dom";
-
-const Input = (props) => {
-  return (
-    <label for={props.name} className="flex flex-col my-4">
-      <p className="capitalize">{props.name}</p>
-      <input {...props} className="bg-gray-mid" />
-    </label>
-  );
-};
-
-const Button = (props) => {
-  return (
-    <button
-      {...props}
-      className="px-2 py-1 font-heading bg-gray-light shadow rounded hover:bg-gray-mid mt-4 font-bold"
-    >
-      <h6>{props.children}</h6>
-    </button>
-  );
-};
+import Button from "../components/UI/Button";
+import Input from "../components/UI/Input";
 
 const Admin = () => {
   const history = useHistory();
@@ -63,7 +45,7 @@ const Admin = () => {
           onSubmit={handleSubmit}
         >
           <h4 className="font-heading">Admin Login</h4>
-          <hr className="border-gray-light border-t-1" />
+          <hr className="border-gray-light border-t-1 mb-4" />
           <Input
             name="username"
             type="text"

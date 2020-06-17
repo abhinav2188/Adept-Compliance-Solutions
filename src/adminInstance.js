@@ -10,6 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     request => {
         console.log("request",request.method,request.baseURL+request.url);
+        console.log(request.headers);
         return request;
     },
     error => {
