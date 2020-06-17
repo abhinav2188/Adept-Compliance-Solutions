@@ -44,7 +44,7 @@ const AddService = () => {
         "content-type": "multipart/form-data",
       },
     })
-      .then((response) => {setResponse(JSON.stringify(response.data)); setAdd(false);})
+      .then((response) => {setResponse(JSON.stringify(response.data)); setAdd(false); authContext.setDataChanged(prevState=>!prevState)})
       .catch((error) => {setResponse(JSON.stringify(error.response?error.response.data:error)); setAdd(false);});
   };
 

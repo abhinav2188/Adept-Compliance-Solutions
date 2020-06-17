@@ -8,17 +8,23 @@ const Service = (props) => {
   const authContext = useContext(AuthContext);
 
   const handleDelete = (id) => {
-    axiosInstance({
-      method: "DELETE",
-      url: "service/" + id,
-      headers: {
-        "auth-token": authContext.token,
-      },
-    })
-      .then((response) => {authContext.setDataChanged(prevState => !prevState); alert(JSON.stringify(response.data))})
-      .catch((error) =>
-        alert(JSON.stringify(error.response ? error.response.data : error))
-      );
+    var confirmation = window.confirm("Are you sure to delete");
+    if (confirmation) {
+      axiosInstance({
+        method: "DELETE",
+        url: "service/" + id,
+        headers: {
+          "auth-token": authContext.token,
+        },
+      })
+        .then((response) => {
+          authContext.setDataChanged((prevState) => !prevState);
+          alert(JSON.stringify(response.data));
+        })
+        .catch((error) =>
+          alert(JSON.stringify(error.response ? error.response.data : error))
+        );
+    }
   };
 
   return (
