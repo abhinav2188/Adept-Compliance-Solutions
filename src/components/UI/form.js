@@ -13,22 +13,24 @@ import Button from "./Button";
 
 const Form = (props) => {
   const [formData, setFormData] = useState({});
-  
+
   const onChangeHandler = (event) => {
-      console.log(event.target.type);
     const name = event.target.name;
-    const value = event.target.value;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (event.target.type === "file") {
+      const file = event.target.files[0];
+      console.log(file);
+      setFormData((prevState) => ({ ...prevState, [name]: file }));
+    } else {
+      const value = event.target.value;
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
+    }
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     props.onSubmitHandler(formData);
-  }
-  
+  };
+
   useEffect(() => {
     console.log(props.formAttributes);
     const values = {};
@@ -39,23 +41,35 @@ const Form = (props) => {
     setFormData(values);
   }, []);
 
-
   return (
     <form
-      className="w-72 border border-gray-light rounded p-4"
+      className="border border-gray-light bg-gray-dark rounded p-4 flex flex-col w-full"
       onSubmit={onSubmit}
     >
       <h4 className="font-heading">{props.formTitle}</h4>
       <hr className="border-gray-light border-t-1 mb-4" />
-      {Object.keys(formData).map((key) => (
-        <Input
-          name={key}
-          type={props.formAttributes[key].type}
-          value={formData[key]}
-          onChange={onChangeHandler}
-        />
-      ))}
-      <Button type="submit">{props.actionString}</Button>
+      {Object.keys(formData).map((key) =>
+        props.formAttributes[key].type === "file" ? (
+          <Input
+            name={key}
+            type={props.formAttributes[key].type}
+            onChange={onChangeHandler}
+            placeholder={props.formAttributes[key].placeholder}
+            accept={props.formAttributes[key].accept}
+          />
+        ) : (
+          <Input
+            name={key}
+            type={props.formAttributes[key].type}
+            value={formData[key]}
+            onChange={onChangeHandler}
+            placeholder={props.formAttributes[key].placeholder}
+          />
+        )
+      )}
+      <Button type="submit" className="self-center">
+        {props.actionString}
+      </Button>
     </form>
   );
 };

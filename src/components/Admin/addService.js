@@ -3,32 +3,12 @@ import Input from "../UI/Input";
 import Button from "../UI/Button";
 import axiosInstance from "../../adminInstance";
 import AuthContext from "../../context/authContext";
+import Form from "../UI/form";
 
 const AddService = () => {
-  const [data, setData] = useState({
-    serviceName: "",
-    serviceHeadline: "",
-    serviceLogo: "",
-  });
   const authContext = useContext(AuthContext);
 
-  const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const onFileChangeHandler = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    setData((prevState) => ({ ...prevState, serviceLogo: file }));
-  };
-
-  const onSubmtiHandler = (event) => {
-    event.preventDefault();
+  const addService = (data) => {
     const params = new FormData();
     params.append("serviceName", data.serviceName);
     params.append("serviceHeadline", data.serviceHeadline);
@@ -59,38 +39,31 @@ const AddService = () => {
 
   const [add, setAdd] = useState(true);
   const [response, setResponse] = useState("");
+
+  const formAttributes = {
+    serviceName: {
+      value: "",
+      type: "text",
+    },
+    serviceHeadline: {
+      value: "",
+      type: "text",
+    },
+    serviceLogo: {
+      value: "",
+      type: "file",
+      accept: "image/png, image/jpeg",
+    },
+  };
+
   return add ? (
-    <div>
-      <form
-        className="md:w-136 w-80 border border-gray-light rounded p-4 bg-gray-dark flex flex-col"
-        onSubmit={onSubmtiHandler}
-      >
-        <h4 className="font-heading">Add Service</h4>
-        <hr className="border-gray-light border-t-1 mb-4" />
-        <Input
-          name="serviceName"
-          type="text"
-          onChange={onChangeHandler}
-          value={data.serviceName}
-        />
-        <Input
-          name="serviceHeadline"
-          type="text"
-          onChange={onChangeHandler}
-          value={data.serviceHeadline}
-        />
-        <Input
-          type="file"
-          name="serviceLogo"
-          placeholder="choose image"
-          className="bg-gray-mid w-full"
-          accept="image/png, image/jpeg"
-          onChange={onFileChangeHandler}
-        />
-        <Button type="submit" className="self-center">
-          Next
-        </Button>
-      </form>
+    <div className="md:w-136 w-80">
+      <Form
+        formTitle="Add new service"
+        actionString="Add"
+        formAttributes={formAttributes}
+        onSubmitHandler={addService}
+      />
     </div>
   ) : (
     <div className="bg-gray-mid border-gray-light rounded p-4">

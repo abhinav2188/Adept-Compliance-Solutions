@@ -8,7 +8,7 @@ import Form from "../components/UI/form";
 const Admin = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
-  
+
   const adminLogin = (data) => {
     const params = new URLSearchParams();
     params.append("username", data.username);
@@ -28,25 +28,38 @@ const Admin = () => {
   };
 
   const formAttributes = {
-      username:{
-          value:"",
-          type:"text"
-      },
-      password:{
-          value:"",
-          type:"password"
-      }
+    username: {
+      value: "",
+      type: "text",
+    },
+    password: {
+      value: "",
+      type: "password",
+    },
   };
 
   return (
-
     <div className="flex flex-col items-center my-8 py-8">
       {!authContext.token ? (
-        <Form formTitle="Admin Login" actionString="Login" formAttributes={formAttributes} onSubmitHandler={adminLogin} />
+        <div className="w-72">
+          <Form
+            formTitle="Admin Login"
+            actionString="Login"
+            formAttributes={formAttributes}
+            onSubmitHandler={adminLogin}
+          />
+        </div>
       ) : (
         <div className="flex flex-col">
           <h3>Already logged in</h3>
-          <Button onClick={() => {authContext.setToken(""); window.sessionStorage.removeItem('token')}}>Logout</Button>
+          <Button
+            onClick={() => {
+              authContext.setToken("");
+              window.sessionStorage.removeItem("token");
+            }}
+          >
+            Logout
+          </Button>
         </div>
       )}
     </div>
