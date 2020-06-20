@@ -11,7 +11,7 @@ const backdrop = (props) => (
     unmountOnExit
   >
     <div
-      className="z-40 bg-black w-screen h-screen fixed top-0 opacity-75"
+      className="z-40 bg-black w-screen h-screen fixed top-0 left-0 opacity-75"
       onClick={() => props.close()}
     ></div>
   </CSSTransition>

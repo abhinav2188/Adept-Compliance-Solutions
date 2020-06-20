@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 import Button from "../UI/Button";
 import axiosInstance from "../../adminInstance";
+import UpdateService from "../Admin/updateService";
+import Modal from "../UI/modal";
 
 const Service = (props) => {
   const authContext = useContext(AuthContext);
@@ -27,7 +29,13 @@ const Service = (props) => {
     }
   };
 
+  const [showUpdateForm , setShowUpdateForm] = useState(false);
+
   return (
+    <>
+    <Modal show={showUpdateForm} close={() => setShowUpdateForm(false)}>
+      <UpdateService serviceName={props.name} serviceHeadline={props.content} close={() => setShowUpdateForm(false)}></UpdateService>
+    </Modal>
     <div
       className={`flex flex-col relative z-0 xl:w-64 xl:min-h-64 lg:w-48 lg:min-h-48 md:w-40 md:min-h-40 w-32 min-h-32 h-full lg:p-4 md:p-3 p-2 bg-gray-light rounded shadow ${props.className}`}
     >
@@ -49,10 +57,11 @@ const Service = (props) => {
           <Button color="warning" onClick={() => handleDelete(props.id)}>
             Delete
           </Button>
-          <Button color="secondary">Edit</Button>
+          <Button color="secondary" onClick={() => setShowUpdateForm(true)}>Edit</Button>
         </div>
       )}
     </div>
+    </>
   );
 };
 

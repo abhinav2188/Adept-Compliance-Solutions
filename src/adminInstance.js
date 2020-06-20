@@ -4,7 +4,6 @@ const base = "http://localhost:3001/api/";
 
 const instance = axios.create({
     baseURL : base,
-    timeout:1000,
 })
 
 instance.interceptors.request.use(

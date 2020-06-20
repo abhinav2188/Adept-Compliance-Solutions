@@ -4,6 +4,10 @@ import serviceVector from "../assets/svgs/service-vector.svg";
 import Stepper from "../components/UI/stepper";
 import axiosInstance from "../clientInstance";
 import Product from "../components/Service/Product";
+import Button from "../components/UI/Button";
+import AddProduct from "../components/Admin/addProduct";
+import Modal from "../components/UI/modal";
+import AuthContext from "../context/authContext";
 
 const timeline = [
   {
@@ -29,6 +33,9 @@ const timeline = [
 ];
 
 const Service = () => {
+  const authContext = useContext(AuthContext);
+
+  // route specification
   const location = useLocation();
   useEffect(() => {
     window.scroll({
@@ -39,10 +46,16 @@ const Service = () => {
     });
   }, [location]);
 
+  //url param
   const { serviceName } = useParams();
+
+  //retrieved from DB
   const [serviceData, setServiceData] = useState({});
   const [serviceProducts, setServiceProducts] = useState([]);
   const [baseURL, setBaseURL] = useState("");
+
+  //flow state
+  const [showAddProductForm, setShowAddProductForm] = useState(false);
 
   useEffect(() => {
     axiosInstance
@@ -54,74 +67,87 @@ const Service = () => {
       .then((data) => {
         console.log(data);
         setServiceData(data);
-      })
-      .catch((error) => alert(error));
-    axiosInstance
-      .get("products/" + serviceName + "/all")
-      .then((response) => response.data.data)
-      .then((data) =>
-        setServiceProducts((prevState) => [...prevState, ...data])
-      )
+        axiosInstance
+        .get("products/" + data._id )
+        .then((response) => response.data.data)
+        .then((data) =>
+          setServiceProducts((prevState) => [...prevState, ...data])
+        )
+        .catch((error) => alert(error));
+        })
       .catch((error) => alert(error));
   }, []);
 
   return (
-    <div className="w-full relative py-8 flex flex-col z-0 mt-2 mb-8 items-center">
-      {/* background vector */}
-      <img
-        className="-z-10 absolute top-0 left-0 lg:w-1/3 md:w-2/5 w-1/2 opacity-50"
-        src={serviceVector}
-        alt=""
-      />
-      {/* Container */}
-      <div className="flex flex-col lg:w-2/3 md:w-5/6 w-11/12 mx-auto">
-        {/* service basic info */}
-        <Link to="/#services" className="mb-8 inline self-end">
-          <h6 className="inline bg-gray-mid px-2 rounded text-orange-mid">
-            >Back to Services
-          </h6>
-        </Link>
+    <>
+      <Modal
+        show={showAddProductForm}
+        close={() => setShowAddProductForm(false)}
+      >
+        <AddProduct serviceId={serviceData._id} />
+      </Modal>
+      <div className="w-full relative py-8 flex flex-col z-0 mt-2 mb-8 items-center">
+        {/* background vector */}
         <img
-          className="w-24 bg-white self-center"
-          src={`http://localhost:3001/api/file/${serviceData.serviceLogo}`}
+          className="-z-10 absolute top-0 left-0 lg:w-1/3 md:w-2/5 w-1/2 opacity-50"
+          src={serviceVector}
           alt=""
         />
-        <h2 className="font-heading font-bold self-center mb-8">
-          {serviceData.name}
-        </h2>
-        <h4 className="font-heading text-center mb-8">
-          {serviceData.headline}
-        </h4>
+        {/* Container */}
+        <div className="flex flex-col lg:w-2/3 md:w-5/6 w-11/12 mx-auto">
+          {/* service basic info */}
+          <Link to="/#services" className="mb-8 inline self-end">
+            <h6 className="inline bg-gray-mid px-2 rounded text-orange-mid">
+              >Back to Services
+            </h6>
+          </Link>
+          <img
+            className="w-24 bg-white self-center"
+            src={`http://localhost:3001/api/file/${serviceData.serviceLogo}`}
+            alt=""
+          />
+          <h2 className="font-heading font-bold self-center mb-8">
+            {serviceData.name}
+          </h2>
+          <h4 className="font-heading text-center mb-8">
+            {serviceData.headline}
+          </h4>
 
-        {/* service procedure */}
-        <Stepper data={timeline} />
-
-        {/* service products */}
-        {serviceProducts.length > 0 ? (
-          <div className="my-8 flex flex-col">
-            <h3 className="mb-8 self-center font-heading font-bold">
-              {serviceName} Products
-            </h3>
-            <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-8 gap-4">
-              {serviceProducts.map((product) => (
-                <Product
-                  productName={product.name}
-                  productISN={product.ISN}
-                  productImageUrl={
-                    product.productImageUrl
-                      ? `http://localhost:3001/api/file/${product.productImageUrl}`
-                      : ""
-                  }
-                  productDetails="jahfjhasjd dj fkhdfk kdjfkdjf kdh khdkf kdf "
-                />
-              ))}
+          {/* service procedure */}
+          <Stepper data={timeline} />
+          {authContext.token && (
+            <Button color="primary" onClick={() => setShowAddProductForm(true)}>
+              Add new Product
+            </Button>
+          )}
+          {/* service products */}
+          {serviceProducts.length > 0 ? (
+            <div className="my-8 flex flex-col">
+              <h3 className="mb-8 self-center font-heading font-bold">
+                {serviceName} Products
+              </h3>
+              <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4">
+                {serviceProducts.map((product) => (
+                  <Product
+                    productName={product.name}
+                    productISN={product.ISN}
+                    productImageUrl={
+                      product.productImageUrl
+                        ? `http://localhost:3001/api/file/${product.productImageUrl}`
+                        : ""
+                    }
+                    productDetails="jahfjhasjd dj fkhdfk kdjfkdjf kdh khdkf kdf "
+                    dataOfImplementation={product.DOI}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

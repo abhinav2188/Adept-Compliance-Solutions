@@ -3,11 +3,13 @@ import Button from "../UI/Button";
 import axiosInstance from "../../adminInstance";
 import AuthContext from "../../context/authContext";
 import Form from "../UI/form";
+import PropTypes from 'prop-types';
 
-const AddService = () => {
+
+const UpdateService = (props) => {
   const authContext = useContext(AuthContext);
 
-  const addService = (data) => {
+  const updateService = (data) => {
     const params = new FormData();
     params.append("serviceName", data.serviceName);
     params.append("serviceHeadline", data.serviceHeadline);
@@ -15,8 +17,8 @@ const AddService = () => {
       params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
 
     axiosInstance({
-      method: "POST",
-      url: "service/",
+      method: "PATCH",
+      url: "service/"+props.serviceName,
       data: params,
       headers: {
         "auth-token": authContext.token,
@@ -24,28 +26,26 @@ const AddService = () => {
       },
     })
       .then((response) => {
-        setResponse(JSON.stringify(response.data));
-        setAdd(false);
+        alert(JSON.stringify(response.data));
         authContext.setDataChanged((prevState) => !prevState);
+        props.close();
       })
       .catch((error) => {
-        setResponse(
+        alert(
           JSON.stringify(error.response ? error.response.data : error)
         );
-        setAdd(false);
       });
   };
 
-  const [add, setAdd] = useState(true);
   const [response, setResponse] = useState("");
 
   const formAttributes = {
     serviceName: {
-      value: "",
+      value: props.serviceName,
       type: "text",
     },
     serviceHeadline: {
-      value: "",
+      value: props.serviceHeadline,
       type: "text",
     },
     serviceLogo: {
@@ -55,23 +55,21 @@ const AddService = () => {
     },
   };
 
-  return add ? (
+  return (
     <div className="md:w-136 w-80">
       <Form
-        formTitle="Add new service"
-        actionString="Add"
+        formTitle="Update service"
+        actionString="Update"
         formAttributes={formAttributes}
-        onSubmitHandler={addService}
+        onSubmitHandler={updateService}
       />
-    </div>
-  ) : (
-    <div className="bg-gray-mid border-gray-light rounded p-4">
-      <p>{response}</p>
-      <Button color="primary" onClick={() => setAdd(true)}>
-        Add another Service
-      </Button>
     </div>
   );
 };
 
-export default AddService;
+UpdateService.propTypes = {
+    serviceName : PropTypes.string,
+    serviceHeadline : PropTypes.string
+};
+
+export default UpdateService;

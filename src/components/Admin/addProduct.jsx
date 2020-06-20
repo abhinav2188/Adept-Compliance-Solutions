@@ -4,19 +4,22 @@ import axiosInstance from "../../adminInstance";
 import AuthContext from "../../context/authContext";
 import Form from "../UI/form";
 
-const AddService = () => {
+const AddProduct = (props) => {
   const authContext = useContext(AuthContext);
 
-  const addService = (data) => {
+  const addProduct = (data) => {
     const params = new FormData();
-    params.append("serviceName", data.serviceName);
-    params.append("serviceHeadline", data.serviceHeadline);
-    if (data.serviceLogo)
-      params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
+    params.append("productName", data.productName);
+    params.append("productISN", data.productISN);
+    if (data.productImage)
+      params.append("productImage", data.productImage, data.productImage.name);
+    params.append("dateOfImplementation", data.dateOfImplementation);
+    params.append("onDisplay", data.onDisplay);
+    params.append("serviceId",props.serviceId)
 
     axiosInstance({
       method: "POST",
-      url: "service/",
+      url: "products/",
       data: params,
       headers: {
         "auth-token": authContext.token,
@@ -40,38 +43,46 @@ const AddService = () => {
   const [response, setResponse] = useState("");
 
   const formAttributes = {
-    serviceName: {
+    productName: {
       value: "",
       type: "text",
     },
-    serviceHeadline: {
+    productISN: {
       value: "",
       type: "text",
     },
-    serviceLogo: {
+    productImage: {
       value: "",
       type: "file",
-      accept: "image/*",
+      accept: "image/png, image/jpeg",
+    },
+    dateOfImplementation: {
+      value: "",
+      type: "text",
+    },
+    onDisplay: {
+      value: false,
+      type: "checkbox",
     },
   };
 
   return add ? (
     <div className="md:w-136 w-80">
       <Form
-        formTitle="Add new service"
-        actionString="Add"
+        formTitle="Add new Product"
+        actionString="Add Product"
         formAttributes={formAttributes}
-        onSubmitHandler={addService}
+        onSubmitHandler={addProduct}
       />
     </div>
   ) : (
     <div className="bg-gray-mid border-gray-light rounded p-4">
       <p>{response}</p>
       <Button color="primary" onClick={() => setAdd(true)}>
-        Add another Service
+        Add more Product
       </Button>
     </div>
   );
 };
 
-export default AddService;
+export default AddProduct;

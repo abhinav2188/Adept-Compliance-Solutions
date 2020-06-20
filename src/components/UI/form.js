@@ -3,14 +3,6 @@ import PropTypes from "prop-types";
 import Input from "./Input";
 import Button from "./Button";
 
-// const formAttributes = {
-//     name : {
-//         value:"",
-//         type:"",
-//         validator:() => {}
-//     }
-// }
-
 const Form = (props) => {
   const [formData, setFormData] = useState({});
 
@@ -20,6 +12,9 @@ const Form = (props) => {
       const file = event.target.files[0];
       console.log(file);
       setFormData((prevState) => ({ ...prevState, [name]: file }));
+    } else if (event.target.type === "checkbox") {
+      const checked = event.target.checked;
+      setFormData((prevState) => ({ ...prevState, [name]: checked }));
     } else {
       const value = event.target.value;
       setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -52,10 +47,17 @@ const Form = (props) => {
         props.formAttributes[key].type === "file" ? (
           <Input
             name={key}
-            type={props.formAttributes[key].type}
+            type="file"
             onChange={onChangeHandler}
             placeholder={props.formAttributes[key].placeholder}
             accept={props.formAttributes[key].accept}
+          />
+        ) : props.formAttributes[key].type === "checkbox" ? (
+          <Input
+            name={key}
+            type="checkbox"
+            checked={formData[key]}
+            onChange={onChangeHandler}
           />
         ) : (
           <Input
