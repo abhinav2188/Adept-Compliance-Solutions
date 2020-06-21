@@ -8,6 +8,7 @@ const Carousel = (props) => {
   const [transitionType, setTransitionType] = useState("next");
   const activeElementsCount = props.activeIndex.length;
   const elementIds = Object.keys(props.elements);
+  const [isButtonRequired, setIsButtonRequired] = useState(false);
 
   function setTranstionClass(value, callback) {
     setTransitionType(value);
@@ -37,16 +38,27 @@ const Carousel = (props) => {
 
   const next = () => {
     setActiveIndex((prevIndex) => {
-      let arr = prevIndex.map(i => nextActiveIndex(i));
+      let arr = prevIndex.map((i) => nextActiveIndex(i));
       return arr;
     });
   };
   const previous = () => {
     setActiveIndex((prevIndex) => {
-      let arr = prevIndex.map(i => previousActiveIndex(i) );
+      let arr = prevIndex.map((i) => previousActiveIndex(i));
       return arr;
     });
   };
+
+  useEffect(() => {
+    if (props.automate) setIsButtonRequired(false);
+    else if (props.elements.length <= props.activeIndex.length)
+      setIsButtonRequired(false);
+    else
+    setIsButtonRequired(true);
+    console.log(props.elements.length, props.elements);
+    console.log(props.activeIndex.length);
+    console.log(isButtonRequired);
+  }, [props.elements, props.automate]);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -67,7 +79,7 @@ const Carousel = (props) => {
           </SwitchTransition>
         ))}
       </div>
-      {!props.automate ? (
+      {isButtonRequired ? (
         <div className="flex mt-12">
           <button
             className="p-2 border border-orange-mid rounded-full mx-1 text-orange-mid hover:scale-110 transition duration-100 transform"
