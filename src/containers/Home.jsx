@@ -29,7 +29,7 @@ const Home = (props) => {
       <Services />
       <Products />
       <Hline />
-      <CompanyStats numberOfProjects="1100+" numberOfProducts="100+" />
+      <CompanyStats/>
       <Hline />
       <Testimonials />
       <Hline />

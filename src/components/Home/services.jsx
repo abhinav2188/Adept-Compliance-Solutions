@@ -46,11 +46,13 @@ const Services = (props) => {
       <Modal show={showAddForm} close={() => setShowAddForm(false)}>
         <AddService />
       </Modal>
+      
       <div
         id="services"
-        className="w-full relative py-8 flex flex-col z-0 my-8"
+        className="w-full relative py-8 flex flex-col my-8 bg-no-repeat bg-contain z-0"
+        // style={{backgroundImage: `url(${serviceVector})`}}
       >
-        <img
+      <img
           className="-z-10 absolute top-0 transform lg:-translate-y-32 -translate-y-4 lg:w-1/3 md:w-2/5 w-1/2"
           src={serviceVector}
           alt=""
@@ -68,7 +70,7 @@ const Services = (props) => {
           </Button>
         )}
         <Carousel
-          parentClass=" self-end mt-16 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pr-32 lg:pr-24 md:pr-16 pr-4"
+          parentClass="self-end mt-16 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pr-32 lg:pr-24 md:pr-16 pr-4"
           childClasses={childClasses}
           elements={serviceList}
           activeIndex={[0, 1, 2, 3, 4, 5]}

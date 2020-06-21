@@ -6,20 +6,25 @@ import Service from "./containers/Service";
 import "./components/UI/animations.css";
 import Admin from "./containers/Admin";
 import AuthContext from "./context/authContext";
+import ModalContext from "./context/modalContext";
 
 function App() {
   const [token, setToken] = useState(window.sessionStorage.getItem('token'));
   const [dataChanged, setDataChanged] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent , setModalContent] = useState("");
   return (
+    <AuthContext.Provider value={{ token: token, setToken: setToken, dataChanged:dataChanged, setDataChanged:setDataChanged }}>
+    <ModalContext.Provider value={{showModal:showModal ,openModal:()=>setShowModal(true) , closeModal:()=>setShowModal(false), content:modalContent, setContent:setModalContent }}>
     <Layout>
-      <AuthContext.Provider value={{ token: token, setToken: setToken, dataChanged:dataChanged, setDataChanged:setDataChanged }}>
         <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/service/:serviceName" component={Service}></Route>
-          <Route exact path="/admin" component={Admin}></Route>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/service/:serviceName" component={Service}></Route>
+            <Route exact path="/admin" component={Admin}></Route>
         </Switch>
-      </AuthContext.Provider>
     </Layout>
+    </ModalContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
