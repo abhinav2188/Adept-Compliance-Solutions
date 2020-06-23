@@ -21,7 +21,7 @@ const Alert = (props) => {
 
   const alertContext = useContext(AlertContext);
   return (
-    <TransitionGroup className="flex flex-col fixed right-0 w-full items-center z-50" component="div">
+    <TransitionGroup className="flex flex-col fixed top-0 left-1/2 transform -translate-x-1/2 items-center z-50" component="div">
     {
       alertContext.messages.map(msg =>
       <CSSTransition key={msg.id} timeout={200} unmountOnExit mountOnEnter classNames="fade">

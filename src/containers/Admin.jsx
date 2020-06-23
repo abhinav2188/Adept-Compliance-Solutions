@@ -26,7 +26,7 @@ const Admin = () => {
         alertContext.addMessage({type:"success",message:"admin logged in"});
         history.push("/");
       })
-      .catch((error) => alertContext.addMessage({type:"failure",message:error.response.data}));
+      .catch((error) => alertContext.addMessage({type:"failure",message:error.response?error.response.data:error.message}));
   };
 
   const formAttributes = {

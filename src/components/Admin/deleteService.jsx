@@ -5,11 +5,12 @@ import axios from "axios";
 import Button from "../UI/Button";
 import withLoader from "../HOC/withLoader";
 
-const DeleteProduct = (props) => {
-  async function deleteProduct(id) {
+const DeleteService = (props) => {
+  async function deleteService(id) {
     props.setLoading(true);
     try {
-      const response = await axios.delete("products/" + id);
+      const response = await axios.delete("service/" + id);
+      console.log(response);
       props.setLoading(false);
     } catch (error) {
       props.setLoading(false);
@@ -18,15 +19,15 @@ const DeleteProduct = (props) => {
 
   return (
     <Auth>
-      <Button color="warning" onClick={() => deleteProduct(props.id)}>
+      <Button color="warning" onClick={() => deleteService(props.id)}>
         delete
       </Button>
     </Auth>
   );
 };
 
-DeleteProduct.propTypes = {
+DeleteService.propTypes = {
   id: PropTypes.string,
 };
 
-export default withLoader(DeleteProduct, "red");
+export default withLoader(DeleteService, "red");

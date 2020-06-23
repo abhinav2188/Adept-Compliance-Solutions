@@ -2,21 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import serviceVector from "../../assets/svgs/service-vector.svg";
 import Carousel from "../UI/carousel";
 import axiosInstance from "../../clientInstance";
-import AuthContext from "../../context/authContext";
 import Service from "./service";
+import DeleteService from "../Admin/deleteService";
+import UpdateService from "../Admin/updateService";
 import AddService from "../Admin/addService";
-import Modal from "../UI/modal";
-import Button from "../UI/Button";
 import AlertContext from "../../context/alertContext";
-
-// const childClasses = [
-//   "transform lg:translate-x-24 translate-x-12",
-//   "transform lg:translate-x-24 translate-x-12",
-//   "transform lg:translate-x-0 -translate-x-24",
-//   "transform lg:-translate-x-16 -translate-x-24",
-//   "transform lg:-translate-x-16 translate-x-0",
-//   "transform lg:-translate-x-16 translate-x-0",
-// ];
 
 const childClasses = [
   "transform lg:translate-y-0 lg:translate-x-24 translate-y-12",
@@ -26,25 +16,29 @@ const childClasses = [
   "transform lg:translate-y-0 translate-y-12",
   "transform ",
 ];
+
 const Services = (props) => {
-  const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
-
   const [serviceList, setServiceList] = useState([]);
-  const [showAddForm, setShowAddForm] = useState(false);
-
+  const alertContext = useContext(AlertContext);
+  
   useEffect(() => {
     axiosInstance
       .get("service/all")
       .then((response) => response.data)
       .then((data) =>
         data.map((d) => (
-          <Service
-            id={d._id}
-            name={d.name}
-            content={d.headline}
-            imgSrc={`http://localhost:3001/api/file/${d.serviceLogo}`}
-          />
+          <div className="flex flex-col">
+            <div className="flex self-end">
+              <DeleteService id={d._id} />
+              <UpdateService formData={d} />
+            </div>
+            <Service
+              id={d._id}
+              name={d.name}
+              content={d.headline}
+              imgSrc={`http://localhost:3001/api/file/${d.serviceLogo}`}
+            />
+          </div>
         ))
       )
       .then((list) => setServiceList(list))
@@ -55,14 +49,9 @@ const Services = (props) => {
         })
       )
       .catch((error) => alert(error));
-  }, [authContext.dataChanged]);
+  }, []);
 
   return (
-    <>
-      <Modal show={showAddForm} close={() => setShowAddForm(false)}>
-        <AddService />
-      </Modal>
-
       <div
         id="services"
         className="w-full relative py-8 flex flex-col my-8 bg-no-repeat bg-contain z-0"
@@ -76,15 +65,7 @@ const Services = (props) => {
         <h2 className="font-heading self-center font-bold xl:mt-8">
           Our Services
         </h2>
-        {authContext.token && (
-          <Button
-            className="self-center"
-            color="primary"
-            onClick={() => setShowAddForm(true)}
-          >
-            Add New Service
-          </Button>
-        )}
+        <AddService />
         <Carousel
           parentClass="self-center mt-16 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-6 gap-4 "
           childClasses={childClasses}
@@ -93,8 +74,7 @@ const Services = (props) => {
           fade
         />
       </div>
-    </>
   );
 };
-// xl:pr-32 lg:pr-24 md:pr-16 pr-4
+
 export default Services;

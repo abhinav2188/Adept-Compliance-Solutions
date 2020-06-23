@@ -6,21 +6,16 @@ import ServiceForm from "./forms/serviceForm";
 
 const UpdateService = (props) => {
   const modalContext = useContext(ModalContext);
-  const form = (
-    <ServiceForm
-      formData={props.formData}
-      onUpdation={modalContext.closeModal}
-    />
-  );
+  const form = <ServiceForm />;
   const showForm = () => {
-    modalContext.setContent(form, "yellow");
+    modalContext.setContent(form, "green");
     modalContext.openModal();
   };
 
   return (
     <Auth>
-      <Button color="secondary" onClick={showForm}>
-        edit
+      <Button color="primary" onClick={showForm} className="self-center">
+        Add Service
       </Button>
     </Auth>
   );
