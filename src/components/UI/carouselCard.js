@@ -4,7 +4,7 @@ import Carousel from "./carousel";
 
 const CarouselCard = (props) => {
   return (
-    <div className={`flex flex-col overflow-x-hidden xl:w-48 lg:w-40 md:w-32 w-24 items-center ${props.className}`}>
+    <div className={`flex flex-col overflow-x-hidden md:w-48 w-32 items-center ${props.className}`}>
       <Carousel
         elements={props.elementList}
         activeIndex={[0]}

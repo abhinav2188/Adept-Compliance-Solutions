@@ -5,9 +5,9 @@ import CarouselCard from "../UI/carouselCard";
 const Product = (props) => {
   return (
     <div
-      className={`flex flex-col bg-gray-light hover:bg-gray-mid rounded shodow overflow-hidden transition-all duration-100 customClass transform ${props.className} `}
+      className={`flex flex-col bg-gray-light hover:bg-gray-mid rounded shodow transition-all duration-100 overflow-hidden transform ${props.className} `}
     >
-      <div className="xl:w-48 xl:h-48 lg:w-40 lg:h-40 md:w-32 md:h-32 w-24 h-24 bg-white overflow-hidden">
+      <div className="md:w-48 md:h-48 w-32 h-32 bg-white overflow-hidden">
         <img className="w-full h-full" src={props.productImage} alt="" />
       </div>
       <p className="py-1 self-center">{props.productName}</p>
@@ -16,13 +16,22 @@ const Product = (props) => {
 };
 
 const childClasses = [
-  "",
-  "",
-  "transform lg:translate-x-0 translate-x-20",
-  "transform lg:translate-x-24 translate-x-20",
-  "transform lg:translate-x-24 translate-x-0",
-  "transform lg:translate-x-24 translate-x-0",
+  "transform lg:translate-y-0 lg:-translate-x-24 ",
+  "transform lg:translate-y-0 lg:-translate-x-24 translate-y-12",
+  "transform lg:-translate-x-24",
+  "transform lg:translate-y-0 translate-y-12",
+  "transform ",
+  "transform lg:translate-y-0 translate-y-12",
 ];
+
+// const childClasses = [
+//   "",
+//   "",
+//   "transform lg:translate-x-0 translate-x-20",
+//   "transform lg:translate-x-24 translate-x-20",
+//   "transform lg:translate-x-24 translate-x-0",
+//   "transform lg:translate-x-24 translate-x-0",
+// ];
 
 const productContent = [
   {
@@ -97,7 +106,7 @@ const Products = (props) => {
       <h2 className="font-heading self-center font-bold xl:mt-8">
         Our Products
       </h2>
-      <div class="self-start lg:ml-48 ml-12 grid lg:grid-cols-3 lg:gap-8 md:gap-4 grid-cols-2 gap-2 mt-16">
+      <div class="self-center grid lg:grid-cols-3 lg:gap-8 md:gap-6 grid-cols-2 gap-4 mt-16">
         <CarouselCard
           elementList={productList}
           className={childClasses[0]}

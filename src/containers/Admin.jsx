@@ -1,30 +1,32 @@
 import React, { useState, useContext } from "react";
-import axiosInstance from "../adminInstance";
+import axiosInstance from "../clientInstance";
 import AuthContext from "../context/authContext";
 import { useHistory } from "react-router-dom";
 import Button from "../components/UI/Button";
 import Form from "../components/UI/form";
+import AlertContext from "../context/alertContext";
 
 const Admin = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
 
-  const adminLogin = (data) => {
+  async function adminLogin(data){
     const params = new URLSearchParams();
     params.append("username", data.username);
     params.append("password", data.password);
     axiosInstance
       .post("/login", params)
-      .then((response) => response.data.token)
+      .then((response) => response.data)
       .then((token) => {
         authContext.setToken(token);
         window.sessionStorage.token = token;
       })
       .then(() => {
-        alert("admin logged in");
+        alertContext.addMessage({type:"success",message:"admin logged in"});
         history.push("/");
       })
-      .catch((error) => alert(error));
+      .catch((error) => alertContext.addMessage({type:"failure",message:error.response.data}));
   };
 
   const formAttributes = {

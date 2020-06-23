@@ -55,9 +55,6 @@ const Carousel = (props) => {
       setIsButtonRequired(false);
     else
     setIsButtonRequired(true);
-    console.log(props.elements.length, props.elements);
-    console.log(props.activeIndex.length);
-    console.log(isButtonRequired);
   }, [props.elements, props.automate]);
 
   return (
@@ -80,7 +77,7 @@ const Carousel = (props) => {
         ))}
       </div>
       {isButtonRequired ? (
-        <div className="flex mt-12">
+        <div className="flex lg:mt-12 mt-16">
           <button
             className="p-2 border border-orange-mid rounded-full mx-1 text-orange-mid hover:scale-110 transition duration-100 transform"
             onClick={() => {

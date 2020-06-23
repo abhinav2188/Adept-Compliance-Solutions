@@ -7,14 +7,28 @@ import "./components/UI/animations.css";
 import Admin from "./containers/Admin";
 import AuthContext from "./context/authContext";
 import ModalContext from "./context/modalContext";
+import AlertContext from "./context/alertContext";
+import uuid from "uuid";
 
 function App() {
   const [token, setToken] = useState(window.sessionStorage.getItem('token'));
   const [dataChanged, setDataChanged] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent , setModalContent] = useState("");
+  
+  const [alertMessages, setALertMessages] = useState([]);
+  const removeAlertMessage = (id) => {
+    setALertMessages( prevState => prevState.filter(msg => msg.id!=id));
+  }
+  const addAlertMessage = (message) => {
+    message.id = uuid.v4();
+    setALertMessages( prevState => [...prevState,message]);
+    setTimeout( () => removeAlertMessage(message.id),5000)
+  }
+
   return (
     <AuthContext.Provider value={{ token: token, setToken: setToken, dataChanged:dataChanged, setDataChanged:setDataChanged }}>
+    <AlertContext.Provider value={{ messages:alertMessages,addMessage:addAlertMessage, removeMessage:removeAlertMessage }} >
     <ModalContext.Provider value={{showModal:showModal ,openModal:()=>setShowModal(true) , closeModal:()=>setShowModal(false), content:modalContent, setContent:setModalContent }}>
     <Layout>
         <Switch>
@@ -24,6 +38,7 @@ function App() {
         </Switch>
     </Layout>
     </ModalContext.Provider>
+    </AlertContext.Provider>
     </AuthContext.Provider>
   );
 }

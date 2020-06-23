@@ -19,7 +19,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     response => {
         console.log("response", response.status);
-        response.baseURL = base;
         return response;
     },
     error => {

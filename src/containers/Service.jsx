@@ -8,6 +8,9 @@ import Button from "../components/UI/Button";
 import AddProduct from "../components/Admin/addProduct";
 import Modal from "../components/UI/modal";
 import AuthContext from "../context/authContext";
+import Auth from "../components/layout/auth";
+import DeleteProduct from "../components/Admin/deleteProduct";
+import UpdateProduct from "../components/Admin/updateProduct";
 
 const timeline = [
   {
@@ -61,15 +64,14 @@ const Service = () => {
     axiosInstance
       .get("service/" + serviceName)
       .then((response) => {
-        setBaseURL(response.baseURL);
-        return response.data.data;
+        return response.data;
       })
       .then((data) => {
         console.log(data);
         setServiceData(data);
         axiosInstance
         .get("products/" + data._id )
-        .then((response) => response.data.data)
+        .then((response) => response.data)
         .then((data) =>
           setServiceProducts((prevState) => [...prevState, ...data])
         )
@@ -84,7 +86,9 @@ const Service = () => {
         show={showAddProductForm}
         close={() => setShowAddProductForm(false)}
       >
+      <Auth>
         <AddProduct serviceId={serviceData._id} />
+      </Auth>
       </Modal>
       <div className="w-full relative py-8 flex flex-col z-0 mt-2 mb-8 items-center">
         {/* background vector */}
@@ -128,6 +132,11 @@ const Service = () => {
               </h3>
               <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4">
                 {serviceProducts.map((product) => (
+                  <div className="flex flex-col">
+                  <div className="self-end">
+                    <DeleteProduct id={product._id}/>
+                    <UpdateProduct serviceId={serviceData._id} data={product} productId={product._id}/>
+                  </div>
                   <Product
                     productName={product.name}
                     productISN={product.ISN}
@@ -139,6 +148,7 @@ const Service = () => {
                     productDetails="jahfjhasjd dj fkhdfk kdjfkdjf kdh khdkf kdf "
                     dataOfImplementation={product.DOI}
                   />
+                  </div>
                 ))}
               </div>
             </div>

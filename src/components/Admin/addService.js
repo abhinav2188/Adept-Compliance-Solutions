@@ -1,43 +1,22 @@
 import React, { useState, useContext } from "react";
-import Button from "../UI/Button";
-import axiosInstance from "../../adminInstance";
-import AuthContext from "../../context/authContext";
+import axios from "axios";
 import Form from "../UI/form";
+import Auth from "../layout/auth";
+import withLoader from "../HOC/withLoader";
 
-const AddService = () => {
-  const authContext = useContext(AuthContext);
-
-  const addService = (data) => {
+const AddService = (props) => {
+  async function addService(data) {
+    props.setLoading(true);
     const params = new FormData();
     params.append("serviceName", data.serviceName);
     params.append("serviceHeadline", data.serviceHeadline);
     if (data.serviceLogo)
       params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
-
-    axiosInstance({
-      method: "POST",
-      url: "service/",
-      data: params,
-      headers: {
-        "auth-token": authContext.token,
-        "content-type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        setResponse(JSON.stringify(response.data));
-        setAdd(false);
-        authContext.setDataChanged((prevState) => !prevState);
-      })
-      .catch((error) => {
-        setResponse(
-          JSON.stringify(error.response ? error.response.data : error)
-        );
-        setAdd(false);
-      });
-  };
-
-  const [add, setAdd] = useState(true);
-  const [response, setResponse] = useState("");
+    axios
+      .post("service/", params)
+      .then(() => props.setLoading(false))
+      .catch((error) => props.setLoading(false));
+  }
 
   const formAttributes = {
     serviceName: {
@@ -55,23 +34,18 @@ const AddService = () => {
     },
   };
 
-  return add ? (
-    <div className="md:w-136 w-80">
-      <Form
-        formTitle="Add new service"
-        actionString="Add"
-        formAttributes={formAttributes}
-        onSubmitHandler={addService}
-      />
-    </div>
-  ) : (
-    <div className="bg-gray-mid border-gray-light rounded p-4">
-      <p>{response}</p>
-      <Button color="primary" onClick={() => setAdd(true)}>
-        Add another Service
-      </Button>
-    </div>
+  return (
+    <Auth>
+      <div className="md:w-136 w-80">
+        <Form
+          formTitle="Add new service"
+          actionString="Add"
+          formAttributes={formAttributes}
+          onSubmitHandler={addService}
+        />
+      </div>
+    </Auth>
   );
 };
 
-export default AddService;
+export default withLoader(AddService, "green");

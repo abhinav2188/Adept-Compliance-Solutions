@@ -38,7 +38,7 @@ const Service = (props) => {
   return (
     <>
     <div
-      className={`flex flex-col relative z-0 xl:w-64 xl:min-h-64 lg:w-48 lg:min-h-48 md:w-40 md:min-h-40 w-32 min-h-32 h-full lg:p-4 md:p-3 p-2 bg-gray-light rounded shadow ${props.className}`}
+      className={`flex flex-col relative z-0 xl:w-64 xl:min-h-64 lg:w-48 lg:min-h-64 md:w-64 md:min-h-64 w-40 min-h-40 h-full lg:p-4 md:p-3 p-2 bg-gray-light rounded shadow ${props.className}`}
     >
       <img
         className="w-4/5 h-4/5  -z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-25"

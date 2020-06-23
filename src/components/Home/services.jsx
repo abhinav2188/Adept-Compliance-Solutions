@@ -7,26 +7,36 @@ import Service from "./service";
 import AddService from "../Admin/addService";
 import Modal from "../UI/modal";
 import Button from "../UI/Button";
+import AlertContext from "../../context/alertContext";
+
+// const childClasses = [
+//   "transform lg:translate-x-24 translate-x-12",
+//   "transform lg:translate-x-24 translate-x-12",
+//   "transform lg:translate-x-0 -translate-x-24",
+//   "transform lg:-translate-x-16 -translate-x-24",
+//   "transform lg:-translate-x-16 translate-x-0",
+//   "transform lg:-translate-x-16 translate-x-0",
+// ];
 
 const childClasses = [
-  "",
-  "",
-  "transform lg:translate-x-0 -translate-x-24",
-  "transform lg:-translate-x-16 -translate-x-24",
-  "transform lg:-translate-x-16 translate-x-0",
-  "transform lg:-translate-x-16 translate-x-0",
+  "transform lg:translate-y-0 lg:translate-x-24 translate-y-12",
+  "transform lg:translate-y-0 lg:translate-x-24 ",
+  "transform lg:translate-y-0 lg:translate-x-24 translate-y-12",
+  "transform ",
+  "transform lg:translate-y-0 translate-y-12",
+  "transform ",
 ];
-
 const Services = (props) => {
   const authContext = useContext(AuthContext);
-  const [serviceList, setServiceList] = useState([]);
+  const alertContext = useContext(AlertContext);
 
+  const [serviceList, setServiceList] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     axiosInstance
       .get("service/all")
-      .then((response) => response.data.data)
+      .then((response) => response.data)
       .then((data) =>
         data.map((d) => (
           <Service
@@ -38,6 +48,12 @@ const Services = (props) => {
         ))
       )
       .then((list) => setServiceList(list))
+      .then(() =>
+        alertContext.addMessage({
+          message: "services data fetched",
+          type: "success",
+        })
+      )
       .catch((error) => alert(error));
   }, [authContext.dataChanged]);
 
@@ -46,13 +62,13 @@ const Services = (props) => {
       <Modal show={showAddForm} close={() => setShowAddForm(false)}>
         <AddService />
       </Modal>
-      
+
       <div
         id="services"
         className="w-full relative py-8 flex flex-col my-8 bg-no-repeat bg-contain z-0"
         // style={{backgroundImage: `url(${serviceVector})`}}
       >
-      <img
+        <img
           className="-z-10 absolute top-0 transform lg:-translate-y-32 -translate-y-4 lg:w-1/3 md:w-2/5 w-1/2"
           src={serviceVector}
           alt=""
@@ -70,7 +86,7 @@ const Services = (props) => {
           </Button>
         )}
         <Carousel
-          parentClass="self-end mt-16 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-4 gap-2 xl:pr-32 lg:pr-24 md:pr-16 pr-4"
+          parentClass="self-center mt-16 grid lg:grid-cols-3 grid-cols-2 xl:gap-8 lg:gap-6 md:gap-6 gap-4 "
           childClasses={childClasses}
           elements={serviceList}
           activeIndex={[0, 1, 2, 3, 4, 5]}
@@ -80,5 +96,5 @@ const Services = (props) => {
     </>
   );
 };
-
+// xl:pr-32 lg:pr-24 md:pr-16 pr-4
 export default Services;

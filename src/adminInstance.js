@@ -4,6 +4,7 @@ const base = "http://192.168.43.171:3001/api/";
 
 const instance = axios.create({
     baseURL : base,
+    headers : { "auth-token" : window.sessionStorage.getItem('token')}
 })
 
 instance.interceptors.request.use(
@@ -20,10 +21,10 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     response => {
         console.log("response", response.status);
-        response.baseURL = base;
         return response;
     },
     error => {
+        console.log(error.response);
         return Promise.reject(error);
     }
 )

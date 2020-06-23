@@ -12,7 +12,7 @@ const Button = ({ className, color, ...rest }) => {
           : color === "secondary"
           ? "bg-yellow-500 hover:bg-yellow-800"
           : "bg-gray-light hover:bg-gray-mid"
-      } mt-4 font-bold mx-1 ${className}`}
+      } font-bold ${className}`}
     >
       <h6>{rest.children}</h6>
     </button>
