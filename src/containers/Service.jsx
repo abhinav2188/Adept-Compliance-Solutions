@@ -49,10 +49,6 @@ const Service = () => {
   //retrieved from DB
   const [serviceData, setServiceData] = useState({});
   const [serviceProducts, setServiceProducts] = useState([]);
-  const [baseURL, setBaseURL] = useState("");
-
-  //flow state
-  const [showAddProductForm, setShowAddProductForm] = useState(false);
 
   useEffect(() => {
     axiosInstance
@@ -104,6 +100,7 @@ const Service = () => {
 
         {/* service procedure */}
         <Stepper data={timeline} />
+  
         <AddProduct serviceId={serviceData._id} />
 
         {/* service products */}
@@ -112,7 +109,7 @@ const Service = () => {
             <h3 className="mb-8 self-center font-heading font-bold">
               {serviceName} Products
             </h3>
-            <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-4">
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
               {serviceProducts.map((product) => (
                 <div className="flex flex-col">
                   <div className="self-end flex">
