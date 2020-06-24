@@ -22,22 +22,22 @@ const Auth = (props) => {
 
     axios.defaults.headers.common["auth-token"] = authContext.token;
 
-    axios.interceptors.response.use(
-        response => {
-            console.log("response from auth", response.status);
-            // alertContext.addMessage(mapResponseToAlert(response.status,response.data));
-            alertContext.addMessage({type:"success",message:response.statusText})
-            return response;
-        },
-        error => {
-            console.log(error.response);
-            // if(error.response){
-            //     alertContext.addMessage(mapResponseToAlert(error.response.status,error.response.data));
-            // }
-            alertContext.addMessage({type:"failure",message:error.response.data});
-            return Promise.reject(error);
-        }
-    )
+    // axios.interceptors.response.use(
+    //     response => {
+    //         console.log("response from auth", response.status);
+    //         // alertContext.addMessage(mapResponseToAlert(response.status,response.data));
+    //         alertContext.addMessage({type:"success",message:response.statusText})
+    //         return response;
+    //     },
+    //     error => {
+    //         console.log(error.response);
+    //         // if(error.response){
+    //         //     alertContext.addMessage(mapResponseToAlert(error.response.status,error.response.data));
+    //         // }
+    //         alertContext.addMessage({type:"failure",message:error.response.data});
+    //         return Promise.reject(error);
+    //     }
+    // )
     return authContext.token?props.children:null;
 };
 
