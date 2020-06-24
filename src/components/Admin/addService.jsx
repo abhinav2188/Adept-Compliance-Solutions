@@ -8,7 +8,7 @@ const UpdateService = (props) => {
   const modalContext = useContext(ModalContext);
   const form = <ServiceForm />;
   const showForm = () => {
-    modalContext.setContent(form, "green");
+    modalContext.setContent(form);
     modalContext.openModal();
   };
 

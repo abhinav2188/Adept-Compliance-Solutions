@@ -13,7 +13,7 @@ const UpdateService = (props) => {
     />
   );
   const showForm = () => {
-    modalContext.setContent(form, "yellow");
+    modalContext.setContent(form);
     modalContext.openModal();
   };
 

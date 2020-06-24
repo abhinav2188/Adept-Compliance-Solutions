@@ -1,72 +1,85 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Carousel from "../UI/carousel";
+import axiosInstance from "../../clientInstance";
+import AlertContext from "../../context/alertContext";
+import AddTestimonial from "../Admin/addTestimonial";
+import Spinner from "../UI/spinner/spinner";
+import UpdateTestimonial from "../Admin/updateTestimonial";
+import DeleteTestimonial from "../Admin/deleteTestimonial";
+import userSvg from "../../assets/svgs/user.svg";
 
 const Testimonial = (props) => {
   return (
-      <div className="lg:w-80 lg:h-40 md:w-72 md:h-40 w-64 h-36 bg-gray-light flex flex-col lg:p-4 md:p-3 p-2 rounded shadow">
-          <div className="flex lg:mb-4 md:mb-3 mb-2 items-center">
-              <img className="w-6 h-6 rounded-full bg-white mr-4" src="https://picsum.photos/200" alt=""/>
-              <p className="uppercase">{props.name}</p>
+      <div className="lg:w-80 lg:h-40 md:w-72 md:h-32 w-64 h-32 bg-gray-light flex flex-col lg:py-4 md:py-3 py-2 px-4 rounded shadow">
+          <div className="flex mb-4 items-center self-center">
+              <img className="w-6 h-6 rounded-full mr-2 bg-gray-mid" src={props.avatarUrl} alt=""/>
+              <p className="capitalize">{props.name}</p>
           </div>
-          <p className="leading-none">{props.comment}</p>
+          <p className="leading-none text-center">{props.comment}</p>
       </div>
       
   );
 }
 
-const testimonialContent = [
-  {
-    name: "name 1",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-  {
-    name: "name 2",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-  {
-    name: "name 3",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-  {
-    name: "name 4",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-  {
-    name: "name 5",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-  {
-    name: "name 6",
-    comment:
-      "Duis nec metus nec justo sodales consequat. Duis faucibus bibendum velit sed venenatis. Praesent condimentum vulputate posuere. Etiam sed accumsan ex. Fusce semper",
-  },
-];
-
-const testimonialList = 
-testimonialContent.map((testimonial) =>
-    <Testimonial name={testimonial.name} comment={testimonial.comment} />
-);
-
 const Testimonials = (props) => {
+  const [testimonialList,setTestimonialList] = useState([]);
+  const alertContext = useContext(AlertContext);
+  const [dataFetched,setDataFetchced] = useState(false);
+
+  useEffect(() => {
+    axiosInstance
+      .get("testimonials/all")
+      .then((response) => response.data)
+      .then((data) =>
+        data.map((d) => (
+          <div className="flex flex-col">
+            <div className="flex self-end">
+              <DeleteTestimonial id={d._id} />
+              <UpdateTestimonial formData={d} />
+            </div>
+            <Testimonial
+              key={d._id}
+              name={d.name}
+              comment={d.feedback}
+              avatarUrl={d.avatarUrl?`http://localhost:3001/api/file/${d.avatarUrl}`:userSvg}
+            />
+          </div>
+        ))
+      )
+      .then((list) => setTestimonialList(list))
+      .then(() =>{
+        alertContext.addMessage({
+          message: "testimonial data fetched",
+          type: "success",
+        });
+        setDataFetchced(true);
+      }
+      )
+      .catch((error) => alert(error));
+  }, []);
+
+
   return (
-    <div className="flex flex-col w-full py-8 my-8 z-10 overflow-x-hidden">
+    <div className="flex flex-col w-full py-8 my-8 z-10 overflow-x-hidden items-center">
       <h2 className="font-heading self-center font-bold xl:mt-8">
         Praise for Us
       </h2>
       <p className="font-heading self-center font-bold xl:mt-8 transform xl:-translate-y-8">
         Here's what some of our clients are saying.
       </p>
-      <Carousel
+      <AddTestimonial />
+      {
+        dataFetched?
+        <Carousel
         parentClass="my-8 grid md:grid-cols-2 grid-cols-1 xl:gap-8 lg:gap-6 md:gap-4 gap-2 self-center"
         elements={testimonialList}
         activeIndex={[0, 1]}
         automate
-      />
+      />:
+      <div className="py-8">
+      <Spinner />
+      </div>
+      }
     </div>
   );
 };

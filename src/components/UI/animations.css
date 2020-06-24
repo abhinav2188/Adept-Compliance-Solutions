@@ -2,11 +2,11 @@
     transform: translateX(-100%) ;
     opacity: 0;
  }
- .next-enter-active , .next-exit{
+ .next-enter-active , .next-exit, .next-enter-done{
     transform: translateX(0) ;
     opacity: 1;
  }
- .next-exit-active{
+ .next-exit-active , .next-exit-done{
     transform: translateX(100%) ;
     opacity: 0;
  }
