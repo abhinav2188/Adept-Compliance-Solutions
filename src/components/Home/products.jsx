@@ -5,7 +5,7 @@ import CarouselCard from "../UI/carouselCard";
 const Product = (props) => {
   return (
     <div
-      className={`flex flex-col bg-gray-light hover:bg-gray-mid rounded shodow transition-all duration-100 overflow-hidden transform ${props.className} `}
+      className={`flex flex-col bg-gray-mid rounded shodow transition-all duration-100 overflow-hidden transform ${props.className} `}
     >
       <div className="md:w-48 md:h-48 w-32 h-32 bg-white overflow-hidden">
         <img className="w-full h-full" src={props.productImage} alt="" />
@@ -99,7 +99,7 @@ const Products = (props) => {
   return (
     <div className="w-full relative py-8 flex flex-col z-0 my-8">
       <img
-        className="-z-10 absolute top-0 right-0 lg:w-1/3 md:w-1/2 w-1/2 transform lg:-translate-y-32 -translate-y-12"
+        className="-z-10 absolute top-0 right-0 lg:w-1/3 md:w-1/2 w-1/2 transform lg:-translate-y-32 -translate-y-12 opacity-50"
         src={productVector}
         alt=""
       />

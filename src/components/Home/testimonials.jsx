@@ -7,10 +7,12 @@ import Spinner from "../UI/spinner/spinner";
 import UpdateTestimonial from "../Admin/updateTestimonial";
 import DeleteTestimonial from "../Admin/deleteTestimonial";
 import userSvg from "../../assets/svgs/user.svg";
+import Auth from "../layout/auth";
+import Button from "../UI/Button";
 
 const Testimonial = (props) => {
   return (
-      <div className="lg:w-80 lg:h-40 md:w-72 md:h-32 w-64 h-32 bg-gray-light flex flex-col lg:py-4 md:py-3 py-2 px-4 rounded shadow">
+      <div className="lg:w-80 lg:h-40 md:w-72 md:h-32 w-64 h-32 bg-gray-mid flex flex-col lg:py-4 md:py-3 py-2 px-4 rounded shadow">
           <div className="flex mb-4 items-center self-center">
               <img className="w-6 h-6 rounded-full mr-2 bg-gray-mid" src={props.avatarUrl} alt=""/>
               <p className="capitalize">{props.name}</p>
@@ -26,11 +28,12 @@ const Testimonials = (props) => {
   const alertContext = useContext(AlertContext);
   const [dataFetched,setDataFetchced] = useState(false);
 
-  useEffect(() => {
-    axiosInstance
-      .get("testimonials/all")
-      .then((response) => response.data)
-      .then((data) =>
+
+  async function getTestimonials(){
+    setDataFetchced(false);
+    try{
+      const {data,config:{baseURL}} = await axiosInstance.get("testimonials/all");
+      setTestimonialList(
         data.map((d) => (
           <div className="flex flex-col">
             <div className="flex self-end">
@@ -41,23 +44,20 @@ const Testimonials = (props) => {
               key={d._id}
               name={d.name}
               comment={d.feedback}
-              avatarUrl={d.avatarUrl?`http://localhost:3001/api/file/${d.avatarUrl}`:userSvg}
+              avatarUrl={d.avatarUrl?`${baseURL}file/${d.avatarUrl}`:userSvg}
             />
           </div>
         ))
-      )
-      .then((list) => setTestimonialList(list))
-      .then(() =>{
-        alertContext.addMessage({
-          message: "testimonial data fetched",
-          type: "success",
-        });
-        setDataFetchced(true);
-      }
-      )
-      .catch((error) => alert(error));
-  }, []);
+      );
+      setDataFetchced(true);
+    }catch(err){
+      console.log(err);
+    }
+  }
 
+  useEffect(()=>{
+    getTestimonials();
+  },[])
 
   return (
     <div className="flex flex-col w-full py-8 my-8 z-10 overflow-x-hidden items-center">
@@ -68,6 +68,7 @@ const Testimonials = (props) => {
         Here's what some of our clients are saying.
       </p>
       <AddTestimonial />
+      <Auth><Button onClick={getTestimonials}>Refresh</Button></Auth>
       {
         dataFetched?
         <Carousel

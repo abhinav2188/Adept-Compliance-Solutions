@@ -4,12 +4,14 @@ import axiosInstance from "../../clientInstance";
 import Spinner from "../UI/spinner/spinner";
 import AddClient from "../Admin/addClient";
 import DeleteClient from "../Admin/deleteClient";
+import Auth from "../layout/auth";
+import Button from "../UI/Button";
 
 const Client = (props) => {
   return (
     <div className="xl:px-8 lg:px-6 md:px-4 px-2">
       <img
-        className="md:min-w-32 min-w-24 md:w-32 w-24  rounded-sm "
+        className="md:min-w-40 min-w-32 md:w-40 w-32 bg-white p-1 rounded-sm "
         src={props.logoSrc}
         alt={props.name}
       />
@@ -45,7 +47,6 @@ const Clients = (props) => {
       setIsDataFetched(true);
     } catch (err) {
       console.log(err);
-      setIsDataFetched(true);
     }
   }
 
@@ -56,7 +57,7 @@ const Clients = (props) => {
   return (
     <div className="flex flex-col w-full py-8 z-0 relative my-8">
       <img
-        className="-z-10 absolute top-0 lg:w-1/4 md:w-2/5 w-1/2 transform lg:-translate-y-64 -translate-y-32 "
+        className="-z-10 absolute top-0 lg:w-1/4 md:w-2/5 w-1/2 transform lg:-translate-y-64 -translate-y-32 opacity-50"
         src={vector3}
         alt=""
       />
@@ -68,6 +69,8 @@ const Clients = (props) => {
         Join these multi national companies.
       </p>
       <AddClient />
+      <Auth><Button onClick={getClients} className="self-center">Refresh</Button></Auth>
+
         {isDataFetched ? (
           <div className="flex lg:w-2/3 w-3/4 py-8 overflow-x-scroll mx-auto items-center my-8">
           {clientList.map((client) => client)}</div>

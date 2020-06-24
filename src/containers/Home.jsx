@@ -9,7 +9,7 @@ import About from "../components/Home/about";
 import { useLocation } from "react-router-dom";
 
 const Hline = () => (
-  <hr className="lg:my-8 my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50" />
+  <hr className="my-16 w-5/6 mx-auto md:border-t-4 border-t-4 border-gray-light opacity-25 border-dotted" />
 );
 const Home = (props) => {
   const location = useLocation();
@@ -30,9 +30,9 @@ const Home = (props) => {
       <Products />
       <Hline />
       <CompanyStats/>
-      <Hline />
+      {/* <Hline /> */}
       <Testimonials />
-      <Hline />
+      {/* <Hline /> */}
       <Clients />
     </div>
   );

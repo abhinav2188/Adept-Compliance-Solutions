@@ -3,11 +3,14 @@ import fullLogo from "../../assets/full-logo.png";
 import {NavLink} from "react-router-dom";
 import staticContent from "../../assets/staticContent";
 
-
+const Hline = () => (
+    <hr className="my-8 w-5/6 mx-auto  md:border-t-4 border-t-4 border-gray-light opacity-25 border-dotted" />
+  );
+  
 const BottomNav = (props) => {
     return (
         <>
-        <hr className="my-8 w-5/6 mx-auto border-t-1 border-gray-light opacity-50"/>
+        <Hline />
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-8 md:gap-4 gap-2 md:w-5/6 w-3/4 mx-auto py-8 my-8">
             <div id="contact" className="flex flex-col md:items-start items-center">
                 <div className="px-8 py-2 bg-white w-48 mb-2">
