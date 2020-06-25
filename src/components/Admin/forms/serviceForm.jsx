@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import Form from "../../UI/form";
 import Auth from "../../layout/auth";
 import withLoader from "../../HOC/withLoader";
 import PropTypes from "prop-types";
+import AlertContext from "../../../context/alertContext";
 
 //contains updation and addition form for services into DB
 
 const ServiceForm = ({ formData, ...props }) => {
+
+  const alertContext = useContext(AlertContext);
+
+
   async function addService(data) {
     props.setLoading(true);
     const params = new FormData();
@@ -17,15 +22,28 @@ const ServiceForm = ({ formData, ...props }) => {
       params.append("serviceLogo", data.serviceLogo, data.serviceLogo.name);
 
     try {
+      var response;
       if(formData)
-      await axios.patch("service/"+formData.name , params);
+      response = await axios.patch("service/"+formData.name , params);
       else
-      await axios.post("service/", params);
+      response = await axios.post("service/", params);
       props.setLoading(false);
       if(formData)
       props.onUpdation();
+      const {data,statusText} = response;
+      alertContext.addMessage({
+        type:"success",
+        message:statusText+" : "+data
+      })
     } catch (err) {
       props.setLoading(false);
+      console.log(err);
+      console.log(err.response);
+      const {data,statusText} = err.response;
+      alertContext.addMessage({
+        type:"failure",
+        message:statusText+" : "+data
+      })
     }
   }
 

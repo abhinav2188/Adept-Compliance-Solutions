@@ -7,6 +7,9 @@ import Product from "../components/Service/Product";
 import DeleteProduct from "../components/Admin/deleteProduct";
 import UpdateProduct from "../components/Admin/updateProduct";
 import AddProduct from "../components/Admin/addProduct";
+import Auth from "../components/layout/auth";
+import Button from "../components/UI/Button";
+import Spinner from "../components/UI/spinner/spinner";
 
 const timeline = [
   {
@@ -31,7 +34,7 @@ const timeline = [
   },
 ];
 
-const Service = () => {
+const Service = (props) => {
   // route specification
   const location = useLocation();
   useEffect(() => {
@@ -49,25 +52,56 @@ const Service = () => {
   //retrieved from DB
   const [serviceData, setServiceData] = useState({});
   const [serviceProducts, setServiceProducts] = useState([]);
+  const [baseURL, setBaseURL] = useState("");
+
+  async function getProducts(serviceId) {
+    try {
+      const {
+        data,
+        config: { baseURL },
+      } = await axiosInstance.get("products/" + serviceId);
+      setServiceProducts(
+        data.map((product) => (
+          <div className="flex flex-col">
+            <div className="self-end flex">
+              <DeleteProduct id={product._id} />
+              <UpdateProduct serviceId={serviceId} formData={product} />
+            </div>
+            <Product
+              key={product._id}
+              productName={product.name}
+              productISN={product.ISN}
+              productImageUrl={
+                product.productImageUrl
+                  ? `${baseURL}file/${product.productImageUrl}`
+                  : ""
+              }
+              dataOfImplementation={product.DOI}
+            />
+          </div>
+        ))
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getServiceData() {
+    try {
+      const {
+        data,
+        config: { baseURL },
+      } = await axiosInstance.get("service/" + serviceName);
+      setServiceData(data);
+      setBaseURL(baseURL);
+      getProducts(data._id);
+    } catch (err) {
+      alert(err);
+    }
+  }
 
   useEffect(() => {
-    axiosInstance
-      .get("service/" + serviceName)
-      .then((response) => {
-        return response.data;
-      })
-      .then((data) => {
-        console.log(data);
-        setServiceData(data);
-        axiosInstance
-          .get("products/" + data._id)
-          .then((response) => response.data)
-          .then((data) =>
-            setServiceProducts((prevState) => [...prevState, ...data])
-          )
-          .catch((error) => alert(error));
-      })
-      .catch((error) => alert(error));
+    getServiceData();
   }, []);
 
   return (
@@ -86,22 +120,42 @@ const Service = () => {
             >Back to Services
           </h6>
         </Link>
-        <img
-          className="w-24 bg-white self-center"
-          src={`http://localhost:3001/api/file/${serviceData.serviceLogo}`}
-          alt=""
-        />
-        <h2 className="font-heading font-bold self-center mb-8">
-          {serviceData.name}
-        </h2>
-        <h4 className="font-heading text-center mb-8">
-          {serviceData.headline}
-        </h4>
+        <Auth>
+          <Button onClick={getServiceData} className="self-center">
+            Refresh
+          </Button>
+        </Auth>
+        {serviceData._id ? (
+          <>
+            <img
+              className="w-24 bg-white self-center"
+              src={`${baseURL}file/${serviceData.serviceLogo}`}
+              alt=""
+            />
+            <h2 className="font-heading font-bold self-center mb-8">
+              {serviceData.name}
+            </h2>
+            <h4 className="font-heading text-center mb-8">
+              {serviceData.headline}
+            </h4>
 
-        {/* service procedure */}
-        <Stepper data={timeline} />
-  
+            {/* service procedure */}
+            <Stepper data={timeline} />
+          </>
+        ) : (
+          <div className="mx-auto py-8">
+            <Spinner />
+          </div>
+        )}
         <AddProduct serviceId={serviceData._id} />
+        <Auth>
+          <Button
+            onClick={() => getProducts(serviceData._id)}
+            className="self-center"
+          >
+            Refresh
+          </Button>
+        </Auth>
 
         {/* service products */}
         {serviceProducts.length > 0 ? (
@@ -110,32 +164,13 @@ const Service = () => {
               {serviceName} Products
             </h3>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-              {serviceProducts.map((product) => (
-                <div className="flex flex-col">
-                  <div className="self-end flex">
-                    <DeleteProduct id={product._id} />
-                    <UpdateProduct
-                      serviceId={serviceData._id}
-                      formData={product}
-                    />
-                  </div>
-                  <Product
-                    productName={product.name}
-                    productISN={product.ISN}
-                    productImageUrl={
-                      product.productImageUrl
-                        ? `http://localhost:3001/api/file/${product.productImageUrl}`
-                        : ""
-                    }
-                    productDetails="jahfjhasjd dj fkhdfk kdjfkdjf kdh khdkf kdf "
-                    dataOfImplementation={product.DOI}
-                  />
-                </div>
-              ))}
+              {serviceProducts.map((product) => product)}
             </div>
           </div>
         ) : (
-          ""
+          <div className="mx-auto py-8">
+            <Spinner />
+          </div>
         )}
       </div>
     </div>

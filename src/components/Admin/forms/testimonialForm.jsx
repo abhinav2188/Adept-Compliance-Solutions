@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Form from "../../UI/form";
 import withLoader from "../../HOC/withLoader";
 import axios from "axios";
+import AlertContext from "../../../context/alertContext";
 
 const TestimonialForm = ({ formData, testimonialId, ...props }) => {
+  const alertContext = useContext(AlertContext);
+
   const formAttributes = {
     testimonialName: {
       type: "text",
@@ -33,12 +36,26 @@ const TestimonialForm = ({ formData, testimonialId, ...props }) => {
         data.testimonialAvatar.name
       );
     try {
-      if (formData) await axios.patch("testimonials/" + formData._id, params);
-      else await axios.post("testimonials/", params);
+      var response;
+      if (formData)
+        response = await axios.patch("testimonials/" + formData._id, params);
+      else response = await axios.post("testimonials/", params);
       props.setLoading(false);
       if (formData) props.onUpdation();
+      const { data, statusText } = response;
+      alertContext.addMessage({
+        type: "success",
+        message: statusText + " : " + data,
+      });
     } catch (err) {
       props.setLoading(false);
+      console.log(err);
+      
+      const { data, statusText } = err.response;
+      alertContext.addMessage({
+        type: "failure",
+        message: statusText + " : " + data,
+      });
     }
   }
 

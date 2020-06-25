@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Form from "../../UI/form";
 import withLoader from "../../HOC/withLoader";
 import axios from "axios";
+import AlertContext from "../../../context/alertContext";
 
 const ClientForm = ({ formData, ClientId, ...props }) => {
+  const alertContext = useContext(AlertContext);
+
   const formAttributes = {
     clientName: {
       type: "text",
@@ -22,18 +25,27 @@ const ClientForm = ({ formData, ClientId, ...props }) => {
     const params = new FormData();
     params.append("clientName", data.clientName);
     if (data.clientLogo)
-      params.append(
-        "clientLogo",
-        data.clientLogo,
-        data.clientLogo.name
-      );
+      params.append("clientLogo", data.clientLogo, data.clientLogo.name);
+
     try {
-      if (formData) await axios.patch("clients/" + formData._id, params);
-      else await axios.post("clients/", params);
+      var response;
+      if (formData)
+        response = await axios.patch("clients/" + formData._id, params);
+      else response = await axios.post("clients/", params);
       props.setLoading(false);
       if (formData) props.onUpdation();
+      const { data, statusText } = response;
+      alertContext.addMessage({
+        type: "success",
+        message: statusText + " : " + data,
+      });
     } catch (err) {
       props.setLoading(false);
+      const { data, statusText } = err.response;
+      alertContext.addMessage({
+        type: "failure",
+        message: statusText + " : " + data,
+      });
     }
   }
 
