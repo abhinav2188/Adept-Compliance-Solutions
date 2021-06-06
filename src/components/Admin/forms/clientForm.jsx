@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Form from "../../UI/form";
 import withLoader from "../../HOC/withLoader";
-import axios from "axios";
+import axios from "../../../adminInstance";
 import AlertContext from "../../../context/alertContext";
 
 const ClientForm = ({ formData, ClientId, ...props }) => {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Auth from "../layout/auth";
-import axios from "axios";
+import axios from "../../adminInstance";
 import Button from "../UI/Button";
 import withLoader from "../HOC/withLoader";
 import AlertContext from "../../context/alertContext";

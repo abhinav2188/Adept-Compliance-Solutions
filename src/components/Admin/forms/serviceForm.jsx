@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import axios from "axios";
+import axios from "../../../adminInstance";
 import Form from "../../UI/form";
 import Auth from "../../layout/auth";
 import withLoader from "../../HOC/withLoader";
